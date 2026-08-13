@@ -142,6 +142,7 @@
     <script>
         // 1. 建立「聲音地圖」 (Audio Map)
         // 這非常重要，讓程式知道哪個檔案對應哪個注音
+        // 1. 建立「聲音地圖」 (Audio Map) - 已修正為正確音檔順序
         const audioMap = {
             'ㄅ': 'audio_F1', 'ㄆ': 'audio_F2', 'ㄇ': 'audio_F3', 'ㄈ': 'audio_F4',
             'ㄉ': 'audio_F5', 'ㄊ': 'audio_F6', 'ㄋ': 'audio_F7', 'ㄌ': 'audio_F8',
@@ -149,11 +150,11 @@
             'ㄐ': 'audio_F12','ㄑ': 'audio_F13','ㄒ': 'audio_F14',
             'ㄓ': 'audio_F15','ㄔ': 'audio_F16','ㄕ': 'audio_F17','ㄖ': 'audio_F18',
             'ㄗ': 'audio_F19','ㄘ': 'audio_F20','ㄙ': 'audio_F21',
-            'ㄧ': 'audio_F22','ㄨ': 'audio_F23','ㄩ': 'audio_F24',
-            'ㄚ': 'audio_F25','ㄛ': 'audio_F26','ㄜ': 'audio_F27','ㄝ': 'audio_F28',
-            'ㄞ': 'audio_F29','ㄟ': 'audio_F30','ㄠ': 'audio_F31','ㄡ': 'audio_F32',
-            'ㄢ': 'audio_F33','ㄣ': 'audio_F34','ㄤ': 'audio_F35','ㄥ': 'audio_F36',
-            'ㄦ': 'audio_F37'
+            'ㄚ': 'audio_F22','ㄛ': 'audio_F23','ㄜ': 'audio_F24','ㄝ': 'audio_F25',
+            'ㄞ': 'audio_F26','ㄟ': 'audio_F27','ㄠ': 'audio_F28','ㄡ': 'audio_F29',
+            'ㄢ': 'audio_F30','ㄣ': 'audio_F31','ㄤ': 'audio_F32','ㄥ': 'audio_F33',
+            'ㄦ': 'audio_F34',
+            'ㄧ': 'audio_F35','ㄨ': 'audio_F36','ㄩ': 'audio_F37'
         };
 
         // 遊戲狀態變數

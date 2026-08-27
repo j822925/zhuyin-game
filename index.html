@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
@@ -6,23 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>注音探險島 - 第一關：聽音辨位</title>
     <style>
-        /* CSS styling */
         body {
             font-family: '微軟正黑體', 'Arial', sans-serif;
-            background-color: #f0f8ff; /* 淺藍色背景 */
+            background-color: #f0f8ff;
             text-align: center;
             margin: 0;
             padding: 20px;
         }
 
         h1 {
-            color: #ff69b4; /* 亮粉色標題 */
+            color: #ff69b4;
             font-size: 2.5em;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             text-shadow: 2px 2px 4px #ffc0cb;
         }
 
-        #game-container {
+        .container {
             background-color: white;
             border-radius: 15px;
             padding: 30px;
@@ -31,26 +29,44 @@
             margin: 0 auto;
         }
 
-        /* 播放聲音按鈕 */
-        #play-btn {
-            background-color: #4CAF50; /* 綠色 */
-            color: white;
-            font-size: 2em;
-            padding: 20px 40px;
+        /* 按鈕共用樣式 */
+        button {
             border: none;
             border-radius: 10px;
             cursor: pointer;
-            margin-bottom: 30px;
             transition: transform 0.2s;
+        }
+        button:active { transform: translateY(4px); }
+
+        /* 登入區與下拉選單 */
+        select {
+            font-size: 1.5em;
+            padding: 10px;
+            margin: 20px 0;
+            border-radius: 10px;
+            border: 2px solid #4CAF50;
+        }
+
+        #start-btn, #retry-btn {
+            background-color: #ff9800;
+            color: white;
+            font-size: 1.8em;
+            padding: 15px 30px;
+            box-shadow: 0 4px #e68a00;
+            display: block;
+            margin: 0 auto;
+        }
+
+        /* 遊戲區按鈕 */
+        #play-btn {
+            background-color: #4CAF50;
+            color: white;
+            font-size: 2em;
+            padding: 20px 40px;
+            margin-bottom: 20px;
             box-shadow: 0 4px #2e8b57;
         }
 
-        #play-btn:active {
-            transform: translateY(4px);
-            box-shadow: 0 0 #2e8b57;
-        }
-
-        /* 選項按鈕區域 */
         #options-container {
             display: flex;
             justify-content: space-around;
@@ -58,91 +74,84 @@
         }
 
         .option-btn {
-            background-color: #ffb6c1; /* 淺粉色 */
+            background-color: #ffb6c1;
             color: #333;
             font-size: 3em;
             font-weight: bold;
             padding: 20px 30px;
             border: 3px solid #ff69b4;
             border-radius: 15px;
-            cursor: pointer;
             width: 120px;
             height: 120px;
             margin: 10px;
-            transition: background-color 0.3s, transform 0.2s;
             box-shadow: 0 4px #d87093;
             display: flex;
             justify-content: center;
             align-items: center;
         }
         
-        .option-btn:hover {
-            background-color: #ffc0cb;
-        }
+        .option-btn:hover { background-color: #ffc0cb; }
+        .option-btn:active { box-shadow: 0 0 #d87093; }
 
-        .option-btn:active {
-            transform: translateY(4px);
-            box-shadow: 0 0 #d87093;
-        }
-
-        /* 提示訊息區域 */
         #message {
             font-size: 1.5em;
             margin-top: 20px;
             font-weight: bold;
-            height: 30px; /* 固定高度避免版面跳動 */
-        }
-        
-        /* 隱藏設定區 */
-        #settings-area {
-            margin-top: 50px;
-            padding: 10px;
-            border-top: 2px dashed #ccc;
-            font-size: 0.9em;
-            color: #666;
-        }
-        
-        input[type="text"] {
-             padding: 5px;
-             font-size: 1em;
-             width: 80%;
-        }
-        
-        button {
-            padding: 5px 10px;
-            font-size: 1em;
-            cursor: pointer;
+            height: 30px;
         }
 
+        #progress-text {
+            color: #666;
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 <body>
 
     <h1>🎈 注音探險島 🎈</h1>
 
-    <div id="game-container">
-        <h2>第 1 關：聽聲音選注音</h2>
+    <!-- 畫面 1：座號選擇與載入 -->
+    <div id="login-screen" class="container">
+        <h2>請選擇你的座號</h2>
+        <select id="seat-select">
+            <option value="">請選擇座號...</option>
+            <!-- 這裡會自動產生 1~30 號 -->
+        </select>
+        <button id="start-btn">🚀 開始闖關</button>
+        <p id="loading-msg" style="display:none; color: #4CAF50; font-weight:bold; margin-top:20px;">
+            ⏳ 正在讀取老師派發的任務...
+        </p>
+    </div>
+
+    <!-- 畫面 2：遊戲主畫面 -->
+    <div id="game-screen" class="container" style="display:none;">
+        <h2 id="progress-text">第 1 題</h2>
         <button id="play-btn">▶️ 聽聽看</button>
         
-        <div id="options-container">
-            <!-- 選項按鈕會透過 JavaScript 產生在這裡 -->
-        </div>
-
+        <div id="options-container"></div>
         <div id="message"></div>
     </div>
     
-    <div id="settings-area">
-        <h3>老師設定區 (僅供測試用)</h3>
-        <p>今日注音進度 (請用逗號分隔)：</p>
-        <input type="text" id="daily-progress" value="ㄅ,ㄆ,ㄇ,ㄈ">
-        <button onclick="updateProgress()">更新進度</button>
-        <p><i>實際運用時，這裡會連動 Google 試算表或網址參數。</i></p>
+    <!-- 畫面 3：結算畫面 -->
+    <div id="result-screen" class="container" style="display:none;">
+        <h2 style="color:green;">🎉 闖關完成！太厲害了！</h2>
+        <h3 id="result-text"></h3>
+        <p style="color:#666;">成績已經傳送給老師囉！</p>
+        <button id="retry-btn">🔄 再挑戰一次</button>
     </div>
 
     <script>
-        // 1. 建立「聲音地圖」 (Audio Map)
-        // 這非常重要，讓程式知道哪個檔案對應哪個注音
-        // 1. 建立「聲音地圖」 (Audio Map) - 已修正為正確音檔順序
+        // ==========================================
+        // 老師設定區
+        // ==========================================
+        
+        // ★★★ 請將單引號裡面的文字，換成你剛剛複製的 Google API 網址 ★★★
+        const scriptUrl = 'https://script.google.com/macros/s/AKfycbzthN7YNMjzy_kBbKSOXMb0MLeTsy3hjk_ILn0Av7iHKaBEWjxAKOjL06SMfDQan8ac/exec'; 
+        
+        // 老師可以自由修改每次練習的總題數 (目前設定 10 題)
+        const TOTAL_QUESTIONS = 10; 
+
+        // 建立「聲音地圖」- 標準音檔順序
         const audioMap = {
             'ㄅ': 'audio_F1', 'ㄆ': 'audio_F2', 'ㄇ': 'audio_F3', 'ㄈ': 'audio_F4',
             'ㄉ': 'audio_F5', 'ㄊ': 'audio_F6', 'ㄋ': 'audio_F7', 'ㄌ': 'audio_F8',
@@ -157,116 +166,169 @@
             'ㄧ': 'audio_F35','ㄨ': 'audio_F36','ㄩ': 'audio_F37'
         };
 
+        // ==========================================
         // 遊戲狀態變數
-        let todaySounds = ['ㄅ', 'ㄆ', 'ㄇ', 'ㄈ']; // 預設的今日進度
-        let currentTarget = ''; // 目前正確的注音符號
-        let currentAudio = null; // 目前的音檔物件
+        // ==========================================
+        let todaySounds = [];
+        let currentTarget = '';
+        let currentAudio = null;
+        
+        let seatNumber = '';
+        let attemptCount = 1;     // 第幾次挑戰
+        let questionCount = 0;    // 目前答對幾題
+        let mistakesThisRound = 0;// 這回合總共錯幾次
+        let hasMistakeOnCurrent = false; // 目前這題是否已經錯過了
 
         // 取得 HTML 元素
+        const loginScreen = document.getElementById('login-screen');
+        const gameScreen = document.getElementById('game-screen');
+        const resultScreen = document.getElementById('result-screen');
+        const seatSelect = document.getElementById('seat-select');
+        const loadingMsg = document.getElementById('loading-msg');
+        
         const playBtn = document.getElementById('play-btn');
         const optionsContainer = document.getElementById('options-container');
         const messageDiv = document.getElementById('message');
+        const progressText = document.getElementById('progress-text');
+        const resultText = document.getElementById('result-text');
 
-        // 2. 初始化遊戲 (產生題目)
-        function initGame() {
-            // 清除之前的訊息
+        // 自動產生 1~30 號的下拉選單
+        for(let i = 1; i <= 30; i++) {
+            let option = document.createElement('option');
+            let numStr = i < 10 ? '0' + i : i.toString();
+            option.value = numStr;
+            option.textContent = numStr + ' 號';
+            seatSelect.appendChild(option);
+        }
+
+        // ==========================================
+        // 流程 1：開始按鈕與讀取任務
+        // ==========================================
+        document.getElementById('start-btn').addEventListener('click', async () => {
+            seatNumber = seatSelect.value;
+            if (!seatNumber) {
+                alert("小朋友，請先選擇你的座號喔！");
+                return;
+            }
+
+            loadingMsg.style.display = 'block';
+            
+            try {
+                // 從 Google 試算表讀取今日注音
+                const response = await fetch(scriptUrl);
+                const data = await response.json();
+                
+                if(data.length < 3) {
+                    alert("老師的題庫好像不夠喔！請確保試算表裡至少有 3 個注音。");
+                    loadingMsg.style.display = 'none';
+                    return;
+                }
+                
+                todaySounds = data;
+                startRound(); // 成功抓取後，開始遊戲
+
+            } catch (error) {
+                console.error("讀取失敗", error);
+                alert("讀取任務失敗了！請確認老師的 Google 網址是否正確。");
+                loadingMsg.style.display = 'none';
+            }
+        });
+
+        // ==========================================
+        // 流程 2：開始新的一回合
+        // ==========================================
+        function startRound() {
+            loginScreen.style.display = 'none';
+            resultScreen.style.display = 'none';
+            gameScreen.style.display = 'block';
+            
+            questionCount = 0;
+            mistakesThisRound = 0;
+            nextQuestion();
+        }
+
+        // ==========================================
+        // 流程 3：出題邏輯
+        // ==========================================
+        function nextQuestion() {
+            questionCount++;
+            hasMistakeOnCurrent = false; // 新題目重置錯誤狀態
+            progressText.textContent = `第 ${questionCount} / ${TOTAL_QUESTIONS} 題`;
             messageDiv.textContent = '';
-            messageDiv.style.color = 'black';
 
-            // 隨機選出正確答案
-            currentTarget = getRandomElement(todaySounds);
+            // 從今日題庫隨機挑選答案
+            currentTarget = todaySounds[Math.floor(Math.random() * todaySounds.length)];
             
-            // 準備音檔
+            // 設定音檔 (注意副檔名是 .WAV 喔！)
             const audioFileName = audioMap[currentTarget];
-            if (audioFileName) {
-                // 注意：這裡假設音檔放在名為 'audio' 的資料夾下
-                currentAudio = new Audio('audio/' + audioFileName + '.WAV'); 
-            } else {
-                console.error("找不到對應的音檔:", currentTarget);
-            }
+            currentAudio = new Audio('audio/' + audioFileName + '.WAV');
 
-            // 產生選項 (正確答案 + 2個錯誤答案)
+            // 產生 3 個選項
             const options = generateOptions(currentTarget, todaySounds, 3);
-
-            // 渲染按鈕到畫面上
-            renderOptions(options);
-        }
-
-        // 輔助函數：從陣列中隨機取出一個元素
-        function getRandomElement(arr) {
-            return arr[Math.floor(Math.random() * arr.length)];
-        }
-
-        // 輔助函數：洗牌 (Fisher-Yates 演算法)
-        function shuffleArray(array) {
-            for (let i = array.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [array[i], array[j]] = [array[j], array[i]];
-            }
-            return array;
-        }
-
-        // 3. 產生包含正確與錯誤選項的陣列
-        function generateOptions(correct, pool, numOptions) {
-            let options = [correct];
             
-            // 過濾掉正確答案，得到錯誤選項庫
-            let wrongPool = pool.filter(item => item !== correct);
-            
-            // 如果提供的錯誤選項庫不夠，就從全部注音中補齊
-            if (wrongPool.length < numOptions - 1) {
-                const allZhuyin = Object.keys(audioMap);
-                const extraWrongPool = allZhuyin.filter(item => !pool.includes(item) && item !== correct);
-                wrongPool = wrongPool.concat(extraWrongPool);
-            }
-
-            // 隨機打亂錯誤選項庫
-            wrongPool = shuffleArray(wrongPool);
-
-            // 加入需要的數量
-            for (let i = 0; i < numOptions - 1; i++) {
-                options.push(wrongPool[i]);
-            }
-
-            // 打亂最終的選項陣列，避免正確答案總是在同一個位置
-            return shuffleArray(options);
-        }
-
-        // 4. 將選項按鈕畫到畫面上
-        function renderOptions(optionsArray) {
-            optionsContainer.innerHTML = ''; // 清空舊的按鈕
-
-            optionsArray.forEach(option => {
+            // 畫出按鈕
+            optionsContainer.innerHTML = '';
+            options.forEach(option => {
                 const btn = document.createElement('div');
                 btn.className = 'option-btn';
                 btn.textContent = option;
-                
-                // 綁定點擊事件 (檢查答案)
                 btn.addEventListener('click', () => checkAnswer(option));
-                
                 optionsContainer.appendChild(btn);
             });
+            
+            // 自動播放一次聲音
+            setTimeout(() => { currentAudio.play(); }, 300);
         }
 
-        // 5. 檢查答案
+        function generateOptions(correct, pool, num) {
+            let options = [correct];
+            let wrongPool = pool.filter(item => item !== correct);
+            
+            // 如果今日注音太少，從全部注音補齊錯誤選項
+            if (wrongPool.length < num - 1) {
+                const allZhuyin = Object.keys(audioMap);
+                const extra = allZhuyin.filter(item => !pool.includes(item) && item !== correct);
+                wrongPool = wrongPool.concat(extra);
+            }
+            
+            wrongPool = wrongPool.sort(() => 0.5 - Math.random());
+            for (let i = 0; i < num - 1; i++) {
+                options.push(wrongPool[i]);
+            }
+            return options.sort(() => 0.5 - Math.random());
+        }
+
+        // ==========================================
+        // 流程 4：檢查答案 (錯了必須重選直到對)
+        // ==========================================
         function checkAnswer(selectedOption) {
             if (selectedOption === currentTarget) {
                 messageDiv.textContent = '🎉 答對了！太棒了！';
                 messageDiv.style.color = 'green';
                 
-                // 延遲一秒後進入下一題
+                // 答對了，檢查是否破關
                 setTimeout(() => {
-                    initGame();
-                }, 1500);
+                    if (questionCount >= TOTAL_QUESTIONS) {
+                        endRound();
+                    } else {
+                        nextQuestion();
+                    }
+                }, 1200);
 
             } else {
+                // 答錯了
                 messageDiv.textContent = '❌ 哎呀，再聽一次看看！';
                 messageDiv.style.color = 'red';
-                // 可以加入錯誤音效
+                currentAudio.play(); // 播聲音提示
+                
+                // 確保同一題點錯好幾次，只會扣一次分
+                if (!hasMistakeOnCurrent) {
+                    mistakesThisRound++;
+                    hasMistakeOnCurrent = true;
+                }
             }
         }
 
-        // 綁定播放按鈕事件
         playBtn.addEventListener('click', () => {
             if (currentAudio) {
                 currentAudio.play();
@@ -275,22 +337,41 @@
             }
         });
 
-        // --- 測試用：更新進度 ---
-        function updateProgress() {
-            const inputVal = document.getElementById('daily-progress').value;
-            // 將輸入的字串依逗號分割，並去除前後空白
-            todaySounds = inputVal.split(',').map(s => s.trim()).filter(s => s.length > 0);
+        // ==========================================
+        // 流程 5：結算並傳送成績
+        // ==========================================
+        function endRound() {
+            gameScreen.style.display = 'none';
+            resultScreen.style.display = 'block';
             
-            if(todaySounds.length < 3){
-                alert("為了產生三個選項，請至少輸入 3 個不同的注音符號喔！");
-                return;
-            }
-            alert("進度已更新為：" + todaySounds.join(', ') + "\n開始新題目！");
-            initGame();
+            resultText.textContent = `${seatNumber} 號小朋友，你錯了 ${mistakesThisRound} 次。`;
+            
+            // 將成績打包，透過我們做好的 API 傳給 Google 試算表
+            const resultData = {
+                seat: seatNumber,
+                attempt: attemptCount,
+                total: TOTAL_QUESTIONS,
+                mistakes: mistakesThisRound
+            };
+
+            fetch(scriptUrl, {
+                method: 'POST',
+                // 使用 no-cors 模式確保資料送出不會被瀏覽器擋下
+                mode: 'no-cors', 
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(resultData)
+            }).then(() => {
+                console.log("成績已發送");
+            }).catch(err => {
+                console.error("成績發送發生錯誤", err);
+            });
         }
 
-        // 遊戲載入時執行第一次初始化
-        initGame();
+        // 再挑戰一次按鈕
+        document.getElementById('retry-btn').addEventListener('click', () => {
+            attemptCount++; // 挑戰次數 +1
+            startRound();   // 直接重新開始遊戲
+        });
 
     </script>
 </body>

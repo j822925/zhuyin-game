@@ -192,12 +192,33 @@
         const progressText = document.getElementById('progress-text');
         const resultText = document.getElementById('result-text');
 
-        // 自動產生 1~30 號的下拉選單
-        for(let i = 1; i <= 30; i++) {
+// 自動產生包含姓名的下拉選單
+        // 請在下方引號內填入你們班 14 位小朋友的名字，順序對應 1~14 號
+        const studentNames = [
+            "顏子羨", "呂宸寯", "闕宥承", "鍾鈞宇", "李宇濬",
+            "吳承赫", "曾奎喆", "陳允澤", "趙芸", "鄭耘媃",
+            "洪詩韻", "蔡宸琋", "盧宥芸", "陳妍霏"
+        ];
+
+        // 設定總共要產生幾個座號 (預留到 20 號)
+        const TOTAL_SEATS = 20; 
+
+        for(let i = 1; i <= TOTAL_SEATS; i++) {
             let option = document.createElement('option');
             let numStr = i < 10 ? '0' + i : i.toString();
-            option.value = numStr;
-            option.textContent = numStr + ' 號';
+            
+            // 判斷這個號碼有沒有對應的姓名 (因為程式的計數是從 0 開始，所以要 i-1)
+            if (i <= studentNames.length) {
+                let name = studentNames[i - 1];
+                option.textContent = numStr + ' 號 ' + name;
+                // 這樣設定，傳送到 Google 試算表的成績就會直接顯示「01 號 王小明」
+                option.value = numStr + ' ' + name; 
+            } else {
+                // 沒有名字的預留空號
+                option.textContent = numStr + ' 號';
+                option.value = numStr; 
+            }
+            
             seatSelect.appendChild(option);
         }
 

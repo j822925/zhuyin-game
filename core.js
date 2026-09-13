@@ -13,13 +13,17 @@ export function normalizeConfig(input) {
   return {symbols:symbols.filter(x=>BASE.includes(x)), compounds:[...new Set([...symbols.filter(x=>COMPOUNDS.includes(x)),...compounds])], seats: [...new Set(seats.map(String).filter(x=>/^\d{1,3}$/.test(x)).map(x=>x.padStart(2,'0')))], questions:QUESTIONS_PER_ROUND, authRequired:input?.authRequired===true,verifiedWrites:input?.version>=2, raceWrites:input?.raceWrites===true, rewardsWrites:input?.rewardsWrites===true, spellingApproved:input?.spellingApproved===true, legacy};
 }
 export function createCatalog(rows) {
-  return rows.map(([initial,final,word],index)=>({id:'s'+String(index+1).padStart(2,'0'),initial,final,word,tone:1,label:initial+final,audio:'audio/syllable-clear/s'+String(index+1).padStart(2,'0')+'.wav'}));
+  return rows.map(([initial,final,word,tone=1,meta={}],index)=>{
+    if(!Number.isInteger(tone)||tone<1||tone>4)throw new Error('Invalid spelling tone');
+    const label=initial+final,mark=['','','ˊ','ˇ','ˋ'][tone];
+    return {id:'s'+String(index+1).padStart(2,'0'),initial,final,word,tone,label,displayLabel:label+mark,toneMark:mark,enabled:meta.enabled!==false,reviewRequired:meta.reviewRequired===true,audio:'audio/syllable-clear/s'+String(index+1).padStart(2,'0')+'.wav'};
+  });
 }
 export function poolFor(mode,config,catalog) {
   // Keep the existing single record key so login, history and daily caps stay compatible.
   if(mode==='single') return cleanSymbols([...config.symbols,...config.compounds]).map(label=>({id:label,label,audio:BASE.includes(label)?'audio/audio_F'+(BASE.indexOf(label)+1)+'.WAV':'audio/compound/c'+String(COMPOUNDS.indexOf(label)+1).padStart(2,'0')+'.mp3'}));
   if(mode==='compound') return config.compounds.map(label=>({id:label,label,audio:'audio/compound/c'+String(COMPOUNDS.indexOf(label)+1).padStart(2,'0')+'.mp3'}));
-  return catalog.filter(x=>config.symbols.includes(x.initial)&&(x.final.length===1 ? config.symbols.includes(x.final) : config.compounds.includes(x.final)));
+  return catalog.filter(x=>x.enabled!==false&&config.symbols.includes(x.initial)&&(x.final.length===1 ? config.symbols.includes(x.final) : config.compounds.includes(x.final)));
 }
 export function shuffle(items,rng=Math.random) {
   const result=[...items];
@@ -47,7 +51,7 @@ export class Round {
     if(this.locked||!this.current) return {ignored:true};
     if(value!==this.current.label){this.errors++;return {correct:false};}
     this.locked=true;
-    const row={target:this.current.label,firstCorrect:this.errors===0,errors:this.errors,seconds:Math.max(0,Math.round((now-this.questionStarted)/1000))};
+    const row={target:this.current.displayLabel||this.current.label,firstCorrect:this.errors===0,errors:this.errors,seconds:Math.max(0,Math.round((now-this.questionStarted)/1000))};
     this.rows.push(row);
     return {correct:true,firstCorrect:row.firstCorrect,finished:this.index===this.deck.length-1};
   }

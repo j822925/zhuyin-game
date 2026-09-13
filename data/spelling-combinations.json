@@ -1,0 +1,1835 @@
+{
+  "source": "https://www.boca.gov.tw/cp-2-4226-c0eff-1.html",
+  "retrieved": "2026-09-13",
+  "scope": "聲符＋明寫韻符，排除零聲母及空韻；忽略聲調。本表是官方拼音對照表的範圍，不代表所有皆有第一聲常用例字。",
+  "count": 365,
+  "simple": 201,
+  "compound": 164,
+  "combinations": [
+    {
+      "initial": "ㄅ",
+      "final": "ㄚ",
+      "label": "ㄅㄚ"
+    },
+    {
+      "initial": "ㄅ",
+      "final": "ㄛ",
+      "label": "ㄅㄛ"
+    },
+    {
+      "initial": "ㄅ",
+      "final": "ㄞ",
+      "label": "ㄅㄞ"
+    },
+    {
+      "initial": "ㄅ",
+      "final": "ㄟ",
+      "label": "ㄅㄟ"
+    },
+    {
+      "initial": "ㄅ",
+      "final": "ㄠ",
+      "label": "ㄅㄠ"
+    },
+    {
+      "initial": "ㄅ",
+      "final": "ㄢ",
+      "label": "ㄅㄢ"
+    },
+    {
+      "initial": "ㄅ",
+      "final": "ㄣ",
+      "label": "ㄅㄣ"
+    },
+    {
+      "initial": "ㄅ",
+      "final": "ㄤ",
+      "label": "ㄅㄤ"
+    },
+    {
+      "initial": "ㄅ",
+      "final": "ㄥ",
+      "label": "ㄅㄥ"
+    },
+    {
+      "initial": "ㄅ",
+      "final": "ㄧ",
+      "label": "ㄅㄧ"
+    },
+    {
+      "initial": "ㄅ",
+      "final": "ㄧㄝ",
+      "label": "ㄅㄧㄝ"
+    },
+    {
+      "initial": "ㄅ",
+      "final": "ㄧㄠ",
+      "label": "ㄅㄧㄠ"
+    },
+    {
+      "initial": "ㄅ",
+      "final": "ㄧㄢ",
+      "label": "ㄅㄧㄢ"
+    },
+    {
+      "initial": "ㄅ",
+      "final": "ㄧㄣ",
+      "label": "ㄅㄧㄣ"
+    },
+    {
+      "initial": "ㄅ",
+      "final": "ㄧㄥ",
+      "label": "ㄅㄧㄥ"
+    },
+    {
+      "initial": "ㄅ",
+      "final": "ㄨ",
+      "label": "ㄅㄨ"
+    },
+    {
+      "initial": "ㄆ",
+      "final": "ㄚ",
+      "label": "ㄆㄚ"
+    },
+    {
+      "initial": "ㄆ",
+      "final": "ㄛ",
+      "label": "ㄆㄛ"
+    },
+    {
+      "initial": "ㄆ",
+      "final": "ㄞ",
+      "label": "ㄆㄞ"
+    },
+    {
+      "initial": "ㄆ",
+      "final": "ㄟ",
+      "label": "ㄆㄟ"
+    },
+    {
+      "initial": "ㄆ",
+      "final": "ㄠ",
+      "label": "ㄆㄠ"
+    },
+    {
+      "initial": "ㄆ",
+      "final": "ㄡ",
+      "label": "ㄆㄡ"
+    },
+    {
+      "initial": "ㄆ",
+      "final": "ㄢ",
+      "label": "ㄆㄢ"
+    },
+    {
+      "initial": "ㄆ",
+      "final": "ㄣ",
+      "label": "ㄆㄣ"
+    },
+    {
+      "initial": "ㄆ",
+      "final": "ㄤ",
+      "label": "ㄆㄤ"
+    },
+    {
+      "initial": "ㄆ",
+      "final": "ㄥ",
+      "label": "ㄆㄥ"
+    },
+    {
+      "initial": "ㄆ",
+      "final": "ㄧ",
+      "label": "ㄆㄧ"
+    },
+    {
+      "initial": "ㄆ",
+      "final": "ㄧㄝ",
+      "label": "ㄆㄧㄝ"
+    },
+    {
+      "initial": "ㄆ",
+      "final": "ㄧㄠ",
+      "label": "ㄆㄧㄠ"
+    },
+    {
+      "initial": "ㄆ",
+      "final": "ㄧㄢ",
+      "label": "ㄆㄧㄢ"
+    },
+    {
+      "initial": "ㄆ",
+      "final": "ㄧㄣ",
+      "label": "ㄆㄧㄣ"
+    },
+    {
+      "initial": "ㄆ",
+      "final": "ㄧㄥ",
+      "label": "ㄆㄧㄥ"
+    },
+    {
+      "initial": "ㄆ",
+      "final": "ㄨ",
+      "label": "ㄆㄨ"
+    },
+    {
+      "initial": "ㄇ",
+      "final": "ㄚ",
+      "label": "ㄇㄚ"
+    },
+    {
+      "initial": "ㄇ",
+      "final": "ㄛ",
+      "label": "ㄇㄛ"
+    },
+    {
+      "initial": "ㄇ",
+      "final": "ㄞ",
+      "label": "ㄇㄞ"
+    },
+    {
+      "initial": "ㄇ",
+      "final": "ㄟ",
+      "label": "ㄇㄟ"
+    },
+    {
+      "initial": "ㄇ",
+      "final": "ㄠ",
+      "label": "ㄇㄠ"
+    },
+    {
+      "initial": "ㄇ",
+      "final": "ㄡ",
+      "label": "ㄇㄡ"
+    },
+    {
+      "initial": "ㄇ",
+      "final": "ㄢ",
+      "label": "ㄇㄢ"
+    },
+    {
+      "initial": "ㄇ",
+      "final": "ㄣ",
+      "label": "ㄇㄣ"
+    },
+    {
+      "initial": "ㄇ",
+      "final": "ㄤ",
+      "label": "ㄇㄤ"
+    },
+    {
+      "initial": "ㄇ",
+      "final": "ㄥ",
+      "label": "ㄇㄥ"
+    },
+    {
+      "initial": "ㄇ",
+      "final": "ㄧ",
+      "label": "ㄇㄧ"
+    },
+    {
+      "initial": "ㄇ",
+      "final": "ㄧㄝ",
+      "label": "ㄇㄧㄝ"
+    },
+    {
+      "initial": "ㄇ",
+      "final": "ㄧㄠ",
+      "label": "ㄇㄧㄠ"
+    },
+    {
+      "initial": "ㄇ",
+      "final": "ㄧㄡ",
+      "label": "ㄇㄧㄡ"
+    },
+    {
+      "initial": "ㄇ",
+      "final": "ㄧㄢ",
+      "label": "ㄇㄧㄢ"
+    },
+    {
+      "initial": "ㄇ",
+      "final": "ㄧㄣ",
+      "label": "ㄇㄧㄣ"
+    },
+    {
+      "initial": "ㄇ",
+      "final": "ㄧㄥ",
+      "label": "ㄇㄧㄥ"
+    },
+    {
+      "initial": "ㄇ",
+      "final": "ㄨ",
+      "label": "ㄇㄨ"
+    },
+    {
+      "initial": "ㄇ",
+      "final": "ㄜ",
+      "label": "ㄇㄜ"
+    },
+    {
+      "initial": "ㄈ",
+      "final": "ㄚ",
+      "label": "ㄈㄚ"
+    },
+    {
+      "initial": "ㄈ",
+      "final": "ㄛ",
+      "label": "ㄈㄛ"
+    },
+    {
+      "initial": "ㄈ",
+      "final": "ㄟ",
+      "label": "ㄈㄟ"
+    },
+    {
+      "initial": "ㄈ",
+      "final": "ㄡ",
+      "label": "ㄈㄡ"
+    },
+    {
+      "initial": "ㄈ",
+      "final": "ㄢ",
+      "label": "ㄈㄢ"
+    },
+    {
+      "initial": "ㄈ",
+      "final": "ㄣ",
+      "label": "ㄈㄣ"
+    },
+    {
+      "initial": "ㄈ",
+      "final": "ㄤ",
+      "label": "ㄈㄤ"
+    },
+    {
+      "initial": "ㄈ",
+      "final": "ㄥ",
+      "label": "ㄈㄥ"
+    },
+    {
+      "initial": "ㄈ",
+      "final": "ㄨ",
+      "label": "ㄈㄨ"
+    },
+    {
+      "initial": "ㄉ",
+      "final": "ㄚ",
+      "label": "ㄉㄚ"
+    },
+    {
+      "initial": "ㄉ",
+      "final": "ㄜ",
+      "label": "ㄉㄜ"
+    },
+    {
+      "initial": "ㄉ",
+      "final": "ㄞ",
+      "label": "ㄉㄞ"
+    },
+    {
+      "initial": "ㄉ",
+      "final": "ㄟ",
+      "label": "ㄉㄟ"
+    },
+    {
+      "initial": "ㄉ",
+      "final": "ㄠ",
+      "label": "ㄉㄠ"
+    },
+    {
+      "initial": "ㄉ",
+      "final": "ㄡ",
+      "label": "ㄉㄡ"
+    },
+    {
+      "initial": "ㄉ",
+      "final": "ㄢ",
+      "label": "ㄉㄢ"
+    },
+    {
+      "initial": "ㄉ",
+      "final": "ㄤ",
+      "label": "ㄉㄤ"
+    },
+    {
+      "initial": "ㄉ",
+      "final": "ㄥ",
+      "label": "ㄉㄥ"
+    },
+    {
+      "initial": "ㄉ",
+      "final": "ㄧ",
+      "label": "ㄉㄧ"
+    },
+    {
+      "initial": "ㄉ",
+      "final": "ㄧㄝ",
+      "label": "ㄉㄧㄝ"
+    },
+    {
+      "initial": "ㄉ",
+      "final": "ㄧㄠ",
+      "label": "ㄉㄧㄠ"
+    },
+    {
+      "initial": "ㄉ",
+      "final": "ㄧㄡ",
+      "label": "ㄉㄧㄡ"
+    },
+    {
+      "initial": "ㄉ",
+      "final": "ㄧㄢ",
+      "label": "ㄉㄧㄢ"
+    },
+    {
+      "initial": "ㄉ",
+      "final": "ㄧㄤ",
+      "label": "ㄉㄧㄤ"
+    },
+    {
+      "initial": "ㄉ",
+      "final": "ㄧㄥ",
+      "label": "ㄉㄧㄥ"
+    },
+    {
+      "initial": "ㄉ",
+      "final": "ㄨ",
+      "label": "ㄉㄨ"
+    },
+    {
+      "initial": "ㄉ",
+      "final": "ㄨㄛ",
+      "label": "ㄉㄨㄛ"
+    },
+    {
+      "initial": "ㄉ",
+      "final": "ㄨㄟ",
+      "label": "ㄉㄨㄟ"
+    },
+    {
+      "initial": "ㄉ",
+      "final": "ㄨㄢ",
+      "label": "ㄉㄨㄢ"
+    },
+    {
+      "initial": "ㄉ",
+      "final": "ㄨㄣ",
+      "label": "ㄉㄨㄣ"
+    },
+    {
+      "initial": "ㄉ",
+      "final": "ㄨㄥ",
+      "label": "ㄉㄨㄥ"
+    },
+    {
+      "initial": "ㄊ",
+      "final": "ㄚ",
+      "label": "ㄊㄚ"
+    },
+    {
+      "initial": "ㄊ",
+      "final": "ㄜ",
+      "label": "ㄊㄜ"
+    },
+    {
+      "initial": "ㄊ",
+      "final": "ㄞ",
+      "label": "ㄊㄞ"
+    },
+    {
+      "initial": "ㄊ",
+      "final": "ㄠ",
+      "label": "ㄊㄠ"
+    },
+    {
+      "initial": "ㄊ",
+      "final": "ㄡ",
+      "label": "ㄊㄡ"
+    },
+    {
+      "initial": "ㄊ",
+      "final": "ㄢ",
+      "label": "ㄊㄢ"
+    },
+    {
+      "initial": "ㄊ",
+      "final": "ㄤ",
+      "label": "ㄊㄤ"
+    },
+    {
+      "initial": "ㄊ",
+      "final": "ㄥ",
+      "label": "ㄊㄥ"
+    },
+    {
+      "initial": "ㄊ",
+      "final": "ㄧ",
+      "label": "ㄊㄧ"
+    },
+    {
+      "initial": "ㄊ",
+      "final": "ㄧㄝ",
+      "label": "ㄊㄧㄝ"
+    },
+    {
+      "initial": "ㄊ",
+      "final": "ㄧㄠ",
+      "label": "ㄊㄧㄠ"
+    },
+    {
+      "initial": "ㄊ",
+      "final": "ㄧㄢ",
+      "label": "ㄊㄧㄢ"
+    },
+    {
+      "initial": "ㄊ",
+      "final": "ㄧㄥ",
+      "label": "ㄊㄧㄥ"
+    },
+    {
+      "initial": "ㄊ",
+      "final": "ㄨ",
+      "label": "ㄊㄨ"
+    },
+    {
+      "initial": "ㄊ",
+      "final": "ㄨㄛ",
+      "label": "ㄊㄨㄛ"
+    },
+    {
+      "initial": "ㄊ",
+      "final": "ㄨㄟ",
+      "label": "ㄊㄨㄟ"
+    },
+    {
+      "initial": "ㄊ",
+      "final": "ㄨㄢ",
+      "label": "ㄊㄨㄢ"
+    },
+    {
+      "initial": "ㄊ",
+      "final": "ㄨㄣ",
+      "label": "ㄊㄨㄣ"
+    },
+    {
+      "initial": "ㄊ",
+      "final": "ㄨㄥ",
+      "label": "ㄊㄨㄥ"
+    },
+    {
+      "initial": "ㄋ",
+      "final": "ㄚ",
+      "label": "ㄋㄚ"
+    },
+    {
+      "initial": "ㄋ",
+      "final": "ㄜ",
+      "label": "ㄋㄜ"
+    },
+    {
+      "initial": "ㄋ",
+      "final": "ㄞ",
+      "label": "ㄋㄞ"
+    },
+    {
+      "initial": "ㄋ",
+      "final": "ㄟ",
+      "label": "ㄋㄟ"
+    },
+    {
+      "initial": "ㄋ",
+      "final": "ㄠ",
+      "label": "ㄋㄠ"
+    },
+    {
+      "initial": "ㄋ",
+      "final": "ㄡ",
+      "label": "ㄋㄡ"
+    },
+    {
+      "initial": "ㄋ",
+      "final": "ㄢ",
+      "label": "ㄋㄢ"
+    },
+    {
+      "initial": "ㄋ",
+      "final": "ㄣ",
+      "label": "ㄋㄣ"
+    },
+    {
+      "initial": "ㄋ",
+      "final": "ㄤ",
+      "label": "ㄋㄤ"
+    },
+    {
+      "initial": "ㄋ",
+      "final": "ㄥ",
+      "label": "ㄋㄥ"
+    },
+    {
+      "initial": "ㄋ",
+      "final": "ㄧ",
+      "label": "ㄋㄧ"
+    },
+    {
+      "initial": "ㄋ",
+      "final": "ㄧㄝ",
+      "label": "ㄋㄧㄝ"
+    },
+    {
+      "initial": "ㄋ",
+      "final": "ㄧㄠ",
+      "label": "ㄋㄧㄠ"
+    },
+    {
+      "initial": "ㄋ",
+      "final": "ㄧㄡ",
+      "label": "ㄋㄧㄡ"
+    },
+    {
+      "initial": "ㄋ",
+      "final": "ㄧㄢ",
+      "label": "ㄋㄧㄢ"
+    },
+    {
+      "initial": "ㄋ",
+      "final": "ㄧㄣ",
+      "label": "ㄋㄧㄣ"
+    },
+    {
+      "initial": "ㄋ",
+      "final": "ㄧㄤ",
+      "label": "ㄋㄧㄤ"
+    },
+    {
+      "initial": "ㄋ",
+      "final": "ㄧㄥ",
+      "label": "ㄋㄧㄥ"
+    },
+    {
+      "initial": "ㄋ",
+      "final": "ㄨ",
+      "label": "ㄋㄨ"
+    },
+    {
+      "initial": "ㄋ",
+      "final": "ㄨㄛ",
+      "label": "ㄋㄨㄛ"
+    },
+    {
+      "initial": "ㄋ",
+      "final": "ㄨㄢ",
+      "label": "ㄋㄨㄢ"
+    },
+    {
+      "initial": "ㄋ",
+      "final": "ㄨㄥ",
+      "label": "ㄋㄨㄥ"
+    },
+    {
+      "initial": "ㄋ",
+      "final": "ㄩ",
+      "label": "ㄋㄩ"
+    },
+    {
+      "initial": "ㄋ",
+      "final": "ㄩㄝ",
+      "label": "ㄋㄩㄝ"
+    },
+    {
+      "initial": "ㄌ",
+      "final": "ㄚ",
+      "label": "ㄌㄚ"
+    },
+    {
+      "initial": "ㄌ",
+      "final": "ㄛ",
+      "label": "ㄌㄛ"
+    },
+    {
+      "initial": "ㄌ",
+      "final": "ㄜ",
+      "label": "ㄌㄜ"
+    },
+    {
+      "initial": "ㄌ",
+      "final": "ㄞ",
+      "label": "ㄌㄞ"
+    },
+    {
+      "initial": "ㄌ",
+      "final": "ㄟ",
+      "label": "ㄌㄟ"
+    },
+    {
+      "initial": "ㄌ",
+      "final": "ㄠ",
+      "label": "ㄌㄠ"
+    },
+    {
+      "initial": "ㄌ",
+      "final": "ㄡ",
+      "label": "ㄌㄡ"
+    },
+    {
+      "initial": "ㄌ",
+      "final": "ㄢ",
+      "label": "ㄌㄢ"
+    },
+    {
+      "initial": "ㄌ",
+      "final": "ㄤ",
+      "label": "ㄌㄤ"
+    },
+    {
+      "initial": "ㄌ",
+      "final": "ㄥ",
+      "label": "ㄌㄥ"
+    },
+    {
+      "initial": "ㄌ",
+      "final": "ㄧ",
+      "label": "ㄌㄧ"
+    },
+    {
+      "initial": "ㄌ",
+      "final": "ㄧㄚ",
+      "label": "ㄌㄧㄚ"
+    },
+    {
+      "initial": "ㄌ",
+      "final": "ㄧㄝ",
+      "label": "ㄌㄧㄝ"
+    },
+    {
+      "initial": "ㄌ",
+      "final": "ㄧㄠ",
+      "label": "ㄌㄧㄠ"
+    },
+    {
+      "initial": "ㄌ",
+      "final": "ㄧㄡ",
+      "label": "ㄌㄧㄡ"
+    },
+    {
+      "initial": "ㄌ",
+      "final": "ㄧㄢ",
+      "label": "ㄌㄧㄢ"
+    },
+    {
+      "initial": "ㄌ",
+      "final": "ㄧㄣ",
+      "label": "ㄌㄧㄣ"
+    },
+    {
+      "initial": "ㄌ",
+      "final": "ㄧㄤ",
+      "label": "ㄌㄧㄤ"
+    },
+    {
+      "initial": "ㄌ",
+      "final": "ㄧㄥ",
+      "label": "ㄌㄧㄥ"
+    },
+    {
+      "initial": "ㄌ",
+      "final": "ㄨ",
+      "label": "ㄌㄨ"
+    },
+    {
+      "initial": "ㄌ",
+      "final": "ㄨㄛ",
+      "label": "ㄌㄨㄛ"
+    },
+    {
+      "initial": "ㄌ",
+      "final": "ㄨㄢ",
+      "label": "ㄌㄨㄢ"
+    },
+    {
+      "initial": "ㄌ",
+      "final": "ㄨㄣ",
+      "label": "ㄌㄨㄣ"
+    },
+    {
+      "initial": "ㄌ",
+      "final": "ㄨㄥ",
+      "label": "ㄌㄨㄥ"
+    },
+    {
+      "initial": "ㄌ",
+      "final": "ㄩ",
+      "label": "ㄌㄩ"
+    },
+    {
+      "initial": "ㄌ",
+      "final": "ㄩㄝ",
+      "label": "ㄌㄩㄝ"
+    },
+    {
+      "initial": "ㄌ",
+      "final": "ㄩㄢ",
+      "label": "ㄌㄩㄢ"
+    },
+    {
+      "initial": "ㄍ",
+      "final": "ㄚ",
+      "label": "ㄍㄚ"
+    },
+    {
+      "initial": "ㄍ",
+      "final": "ㄜ",
+      "label": "ㄍㄜ"
+    },
+    {
+      "initial": "ㄍ",
+      "final": "ㄞ",
+      "label": "ㄍㄞ"
+    },
+    {
+      "initial": "ㄍ",
+      "final": "ㄟ",
+      "label": "ㄍㄟ"
+    },
+    {
+      "initial": "ㄍ",
+      "final": "ㄠ",
+      "label": "ㄍㄠ"
+    },
+    {
+      "initial": "ㄍ",
+      "final": "ㄡ",
+      "label": "ㄍㄡ"
+    },
+    {
+      "initial": "ㄍ",
+      "final": "ㄢ",
+      "label": "ㄍㄢ"
+    },
+    {
+      "initial": "ㄍ",
+      "final": "ㄣ",
+      "label": "ㄍㄣ"
+    },
+    {
+      "initial": "ㄍ",
+      "final": "ㄤ",
+      "label": "ㄍㄤ"
+    },
+    {
+      "initial": "ㄍ",
+      "final": "ㄥ",
+      "label": "ㄍㄥ"
+    },
+    {
+      "initial": "ㄍ",
+      "final": "ㄨ",
+      "label": "ㄍㄨ"
+    },
+    {
+      "initial": "ㄍ",
+      "final": "ㄨㄚ",
+      "label": "ㄍㄨㄚ"
+    },
+    {
+      "initial": "ㄍ",
+      "final": "ㄨㄛ",
+      "label": "ㄍㄨㄛ"
+    },
+    {
+      "initial": "ㄍ",
+      "final": "ㄨㄞ",
+      "label": "ㄍㄨㄞ"
+    },
+    {
+      "initial": "ㄍ",
+      "final": "ㄨㄟ",
+      "label": "ㄍㄨㄟ"
+    },
+    {
+      "initial": "ㄍ",
+      "final": "ㄨㄢ",
+      "label": "ㄍㄨㄢ"
+    },
+    {
+      "initial": "ㄍ",
+      "final": "ㄨㄣ",
+      "label": "ㄍㄨㄣ"
+    },
+    {
+      "initial": "ㄍ",
+      "final": "ㄨㄤ",
+      "label": "ㄍㄨㄤ"
+    },
+    {
+      "initial": "ㄍ",
+      "final": "ㄨㄥ",
+      "label": "ㄍㄨㄥ"
+    },
+    {
+      "initial": "ㄎ",
+      "final": "ㄚ",
+      "label": "ㄎㄚ"
+    },
+    {
+      "initial": "ㄎ",
+      "final": "ㄜ",
+      "label": "ㄎㄜ"
+    },
+    {
+      "initial": "ㄎ",
+      "final": "ㄞ",
+      "label": "ㄎㄞ"
+    },
+    {
+      "initial": "ㄎ",
+      "final": "ㄠ",
+      "label": "ㄎㄠ"
+    },
+    {
+      "initial": "ㄎ",
+      "final": "ㄡ",
+      "label": "ㄎㄡ"
+    },
+    {
+      "initial": "ㄎ",
+      "final": "ㄢ",
+      "label": "ㄎㄢ"
+    },
+    {
+      "initial": "ㄎ",
+      "final": "ㄣ",
+      "label": "ㄎㄣ"
+    },
+    {
+      "initial": "ㄎ",
+      "final": "ㄤ",
+      "label": "ㄎㄤ"
+    },
+    {
+      "initial": "ㄎ",
+      "final": "ㄥ",
+      "label": "ㄎㄥ"
+    },
+    {
+      "initial": "ㄎ",
+      "final": "ㄨ",
+      "label": "ㄎㄨ"
+    },
+    {
+      "initial": "ㄎ",
+      "final": "ㄨㄚ",
+      "label": "ㄎㄨㄚ"
+    },
+    {
+      "initial": "ㄎ",
+      "final": "ㄨㄛ",
+      "label": "ㄎㄨㄛ"
+    },
+    {
+      "initial": "ㄎ",
+      "final": "ㄨㄞ",
+      "label": "ㄎㄨㄞ"
+    },
+    {
+      "initial": "ㄎ",
+      "final": "ㄨㄟ",
+      "label": "ㄎㄨㄟ"
+    },
+    {
+      "initial": "ㄎ",
+      "final": "ㄨㄢ",
+      "label": "ㄎㄨㄢ"
+    },
+    {
+      "initial": "ㄎ",
+      "final": "ㄨㄣ",
+      "label": "ㄎㄨㄣ"
+    },
+    {
+      "initial": "ㄎ",
+      "final": "ㄨㄤ",
+      "label": "ㄎㄨㄤ"
+    },
+    {
+      "initial": "ㄎ",
+      "final": "ㄨㄥ",
+      "label": "ㄎㄨㄥ"
+    },
+    {
+      "initial": "ㄏ",
+      "final": "ㄚ",
+      "label": "ㄏㄚ"
+    },
+    {
+      "initial": "ㄏ",
+      "final": "ㄜ",
+      "label": "ㄏㄜ"
+    },
+    {
+      "initial": "ㄏ",
+      "final": "ㄞ",
+      "label": "ㄏㄞ"
+    },
+    {
+      "initial": "ㄏ",
+      "final": "ㄟ",
+      "label": "ㄏㄟ"
+    },
+    {
+      "initial": "ㄏ",
+      "final": "ㄠ",
+      "label": "ㄏㄠ"
+    },
+    {
+      "initial": "ㄏ",
+      "final": "ㄡ",
+      "label": "ㄏㄡ"
+    },
+    {
+      "initial": "ㄏ",
+      "final": "ㄢ",
+      "label": "ㄏㄢ"
+    },
+    {
+      "initial": "ㄏ",
+      "final": "ㄣ",
+      "label": "ㄏㄣ"
+    },
+    {
+      "initial": "ㄏ",
+      "final": "ㄤ",
+      "label": "ㄏㄤ"
+    },
+    {
+      "initial": "ㄏ",
+      "final": "ㄥ",
+      "label": "ㄏㄥ"
+    },
+    {
+      "initial": "ㄏ",
+      "final": "ㄨ",
+      "label": "ㄏㄨ"
+    },
+    {
+      "initial": "ㄏ",
+      "final": "ㄨㄚ",
+      "label": "ㄏㄨㄚ"
+    },
+    {
+      "initial": "ㄏ",
+      "final": "ㄨㄛ",
+      "label": "ㄏㄨㄛ"
+    },
+    {
+      "initial": "ㄏ",
+      "final": "ㄨㄞ",
+      "label": "ㄏㄨㄞ"
+    },
+    {
+      "initial": "ㄏ",
+      "final": "ㄨㄟ",
+      "label": "ㄏㄨㄟ"
+    },
+    {
+      "initial": "ㄏ",
+      "final": "ㄨㄢ",
+      "label": "ㄏㄨㄢ"
+    },
+    {
+      "initial": "ㄏ",
+      "final": "ㄨㄣ",
+      "label": "ㄏㄨㄣ"
+    },
+    {
+      "initial": "ㄏ",
+      "final": "ㄨㄤ",
+      "label": "ㄏㄨㄤ"
+    },
+    {
+      "initial": "ㄏ",
+      "final": "ㄨㄥ",
+      "label": "ㄏㄨㄥ"
+    },
+    {
+      "initial": "ㄐ",
+      "final": "ㄧ",
+      "label": "ㄐㄧ"
+    },
+    {
+      "initial": "ㄐ",
+      "final": "ㄧㄚ",
+      "label": "ㄐㄧㄚ"
+    },
+    {
+      "initial": "ㄐ",
+      "final": "ㄧㄝ",
+      "label": "ㄐㄧㄝ"
+    },
+    {
+      "initial": "ㄐ",
+      "final": "ㄧㄠ",
+      "label": "ㄐㄧㄠ"
+    },
+    {
+      "initial": "ㄐ",
+      "final": "ㄧㄡ",
+      "label": "ㄐㄧㄡ"
+    },
+    {
+      "initial": "ㄐ",
+      "final": "ㄧㄢ",
+      "label": "ㄐㄧㄢ"
+    },
+    {
+      "initial": "ㄐ",
+      "final": "ㄧㄣ",
+      "label": "ㄐㄧㄣ"
+    },
+    {
+      "initial": "ㄐ",
+      "final": "ㄧㄤ",
+      "label": "ㄐㄧㄤ"
+    },
+    {
+      "initial": "ㄐ",
+      "final": "ㄧㄥ",
+      "label": "ㄐㄧㄥ"
+    },
+    {
+      "initial": "ㄐ",
+      "final": "ㄩ",
+      "label": "ㄐㄩ"
+    },
+    {
+      "initial": "ㄐ",
+      "final": "ㄩㄝ",
+      "label": "ㄐㄩㄝ"
+    },
+    {
+      "initial": "ㄐ",
+      "final": "ㄩㄢ",
+      "label": "ㄐㄩㄢ"
+    },
+    {
+      "initial": "ㄐ",
+      "final": "ㄩㄣ",
+      "label": "ㄐㄩㄣ"
+    },
+    {
+      "initial": "ㄐ",
+      "final": "ㄩㄥ",
+      "label": "ㄐㄩㄥ"
+    },
+    {
+      "initial": "ㄑ",
+      "final": "ㄧ",
+      "label": "ㄑㄧ"
+    },
+    {
+      "initial": "ㄑ",
+      "final": "ㄧㄚ",
+      "label": "ㄑㄧㄚ"
+    },
+    {
+      "initial": "ㄑ",
+      "final": "ㄧㄝ",
+      "label": "ㄑㄧㄝ"
+    },
+    {
+      "initial": "ㄑ",
+      "final": "ㄧㄠ",
+      "label": "ㄑㄧㄠ"
+    },
+    {
+      "initial": "ㄑ",
+      "final": "ㄧㄡ",
+      "label": "ㄑㄧㄡ"
+    },
+    {
+      "initial": "ㄑ",
+      "final": "ㄧㄢ",
+      "label": "ㄑㄧㄢ"
+    },
+    {
+      "initial": "ㄑ",
+      "final": "ㄧㄣ",
+      "label": "ㄑㄧㄣ"
+    },
+    {
+      "initial": "ㄑ",
+      "final": "ㄧㄤ",
+      "label": "ㄑㄧㄤ"
+    },
+    {
+      "initial": "ㄑ",
+      "final": "ㄧㄥ",
+      "label": "ㄑㄧㄥ"
+    },
+    {
+      "initial": "ㄑ",
+      "final": "ㄩ",
+      "label": "ㄑㄩ"
+    },
+    {
+      "initial": "ㄑ",
+      "final": "ㄩㄝ",
+      "label": "ㄑㄩㄝ"
+    },
+    {
+      "initial": "ㄑ",
+      "final": "ㄩㄢ",
+      "label": "ㄑㄩㄢ"
+    },
+    {
+      "initial": "ㄑ",
+      "final": "ㄩㄣ",
+      "label": "ㄑㄩㄣ"
+    },
+    {
+      "initial": "ㄑ",
+      "final": "ㄩㄥ",
+      "label": "ㄑㄩㄥ"
+    },
+    {
+      "initial": "ㄒ",
+      "final": "ㄧ",
+      "label": "ㄒㄧ"
+    },
+    {
+      "initial": "ㄒ",
+      "final": "ㄧㄚ",
+      "label": "ㄒㄧㄚ"
+    },
+    {
+      "initial": "ㄒ",
+      "final": "ㄧㄝ",
+      "label": "ㄒㄧㄝ"
+    },
+    {
+      "initial": "ㄒ",
+      "final": "ㄧㄠ",
+      "label": "ㄒㄧㄠ"
+    },
+    {
+      "initial": "ㄒ",
+      "final": "ㄧㄡ",
+      "label": "ㄒㄧㄡ"
+    },
+    {
+      "initial": "ㄒ",
+      "final": "ㄧㄢ",
+      "label": "ㄒㄧㄢ"
+    },
+    {
+      "initial": "ㄒ",
+      "final": "ㄧㄣ",
+      "label": "ㄒㄧㄣ"
+    },
+    {
+      "initial": "ㄒ",
+      "final": "ㄧㄤ",
+      "label": "ㄒㄧㄤ"
+    },
+    {
+      "initial": "ㄒ",
+      "final": "ㄧㄥ",
+      "label": "ㄒㄧㄥ"
+    },
+    {
+      "initial": "ㄒ",
+      "final": "ㄩ",
+      "label": "ㄒㄩ"
+    },
+    {
+      "initial": "ㄒ",
+      "final": "ㄩㄝ",
+      "label": "ㄒㄩㄝ"
+    },
+    {
+      "initial": "ㄒ",
+      "final": "ㄩㄢ",
+      "label": "ㄒㄩㄢ"
+    },
+    {
+      "initial": "ㄒ",
+      "final": "ㄩㄣ",
+      "label": "ㄒㄩㄣ"
+    },
+    {
+      "initial": "ㄒ",
+      "final": "ㄩㄥ",
+      "label": "ㄒㄩㄥ"
+    },
+    {
+      "initial": "ㄓ",
+      "final": "ㄚ",
+      "label": "ㄓㄚ"
+    },
+    {
+      "initial": "ㄓ",
+      "final": "ㄜ",
+      "label": "ㄓㄜ"
+    },
+    {
+      "initial": "ㄓ",
+      "final": "ㄞ",
+      "label": "ㄓㄞ"
+    },
+    {
+      "initial": "ㄓ",
+      "final": "ㄟ",
+      "label": "ㄓㄟ"
+    },
+    {
+      "initial": "ㄓ",
+      "final": "ㄠ",
+      "label": "ㄓㄠ"
+    },
+    {
+      "initial": "ㄓ",
+      "final": "ㄡ",
+      "label": "ㄓㄡ"
+    },
+    {
+      "initial": "ㄓ",
+      "final": "ㄢ",
+      "label": "ㄓㄢ"
+    },
+    {
+      "initial": "ㄓ",
+      "final": "ㄣ",
+      "label": "ㄓㄣ"
+    },
+    {
+      "initial": "ㄓ",
+      "final": "ㄤ",
+      "label": "ㄓㄤ"
+    },
+    {
+      "initial": "ㄓ",
+      "final": "ㄥ",
+      "label": "ㄓㄥ"
+    },
+    {
+      "initial": "ㄓ",
+      "final": "ㄨ",
+      "label": "ㄓㄨ"
+    },
+    {
+      "initial": "ㄓ",
+      "final": "ㄨㄚ",
+      "label": "ㄓㄨㄚ"
+    },
+    {
+      "initial": "ㄓ",
+      "final": "ㄨㄛ",
+      "label": "ㄓㄨㄛ"
+    },
+    {
+      "initial": "ㄓ",
+      "final": "ㄨㄞ",
+      "label": "ㄓㄨㄞ"
+    },
+    {
+      "initial": "ㄓ",
+      "final": "ㄨㄟ",
+      "label": "ㄓㄨㄟ"
+    },
+    {
+      "initial": "ㄓ",
+      "final": "ㄨㄢ",
+      "label": "ㄓㄨㄢ"
+    },
+    {
+      "initial": "ㄓ",
+      "final": "ㄨㄣ",
+      "label": "ㄓㄨㄣ"
+    },
+    {
+      "initial": "ㄓ",
+      "final": "ㄨㄤ",
+      "label": "ㄓㄨㄤ"
+    },
+    {
+      "initial": "ㄓ",
+      "final": "ㄨㄥ",
+      "label": "ㄓㄨㄥ"
+    },
+    {
+      "initial": "ㄔ",
+      "final": "ㄚ",
+      "label": "ㄔㄚ"
+    },
+    {
+      "initial": "ㄔ",
+      "final": "ㄜ",
+      "label": "ㄔㄜ"
+    },
+    {
+      "initial": "ㄔ",
+      "final": "ㄞ",
+      "label": "ㄔㄞ"
+    },
+    {
+      "initial": "ㄔ",
+      "final": "ㄠ",
+      "label": "ㄔㄠ"
+    },
+    {
+      "initial": "ㄔ",
+      "final": "ㄡ",
+      "label": "ㄔㄡ"
+    },
+    {
+      "initial": "ㄔ",
+      "final": "ㄢ",
+      "label": "ㄔㄢ"
+    },
+    {
+      "initial": "ㄔ",
+      "final": "ㄣ",
+      "label": "ㄔㄣ"
+    },
+    {
+      "initial": "ㄔ",
+      "final": "ㄤ",
+      "label": "ㄔㄤ"
+    },
+    {
+      "initial": "ㄔ",
+      "final": "ㄥ",
+      "label": "ㄔㄥ"
+    },
+    {
+      "initial": "ㄔ",
+      "final": "ㄨ",
+      "label": "ㄔㄨ"
+    },
+    {
+      "initial": "ㄔ",
+      "final": "ㄨㄚ",
+      "label": "ㄔㄨㄚ"
+    },
+    {
+      "initial": "ㄔ",
+      "final": "ㄨㄛ",
+      "label": "ㄔㄨㄛ"
+    },
+    {
+      "initial": "ㄔ",
+      "final": "ㄨㄞ",
+      "label": "ㄔㄨㄞ"
+    },
+    {
+      "initial": "ㄔ",
+      "final": "ㄨㄟ",
+      "label": "ㄔㄨㄟ"
+    },
+    {
+      "initial": "ㄔ",
+      "final": "ㄨㄢ",
+      "label": "ㄔㄨㄢ"
+    },
+    {
+      "initial": "ㄔ",
+      "final": "ㄨㄣ",
+      "label": "ㄔㄨㄣ"
+    },
+    {
+      "initial": "ㄔ",
+      "final": "ㄨㄤ",
+      "label": "ㄔㄨㄤ"
+    },
+    {
+      "initial": "ㄔ",
+      "final": "ㄨㄥ",
+      "label": "ㄔㄨㄥ"
+    },
+    {
+      "initial": "ㄕ",
+      "final": "ㄚ",
+      "label": "ㄕㄚ"
+    },
+    {
+      "initial": "ㄕ",
+      "final": "ㄜ",
+      "label": "ㄕㄜ"
+    },
+    {
+      "initial": "ㄕ",
+      "final": "ㄞ",
+      "label": "ㄕㄞ"
+    },
+    {
+      "initial": "ㄕ",
+      "final": "ㄟ",
+      "label": "ㄕㄟ"
+    },
+    {
+      "initial": "ㄕ",
+      "final": "ㄠ",
+      "label": "ㄕㄠ"
+    },
+    {
+      "initial": "ㄕ",
+      "final": "ㄡ",
+      "label": "ㄕㄡ"
+    },
+    {
+      "initial": "ㄕ",
+      "final": "ㄢ",
+      "label": "ㄕㄢ"
+    },
+    {
+      "initial": "ㄕ",
+      "final": "ㄣ",
+      "label": "ㄕㄣ"
+    },
+    {
+      "initial": "ㄕ",
+      "final": "ㄤ",
+      "label": "ㄕㄤ"
+    },
+    {
+      "initial": "ㄕ",
+      "final": "ㄥ",
+      "label": "ㄕㄥ"
+    },
+    {
+      "initial": "ㄕ",
+      "final": "ㄨ",
+      "label": "ㄕㄨ"
+    },
+    {
+      "initial": "ㄕ",
+      "final": "ㄨㄚ",
+      "label": "ㄕㄨㄚ"
+    },
+    {
+      "initial": "ㄕ",
+      "final": "ㄨㄛ",
+      "label": "ㄕㄨㄛ"
+    },
+    {
+      "initial": "ㄕ",
+      "final": "ㄨㄞ",
+      "label": "ㄕㄨㄞ"
+    },
+    {
+      "initial": "ㄕ",
+      "final": "ㄨㄟ",
+      "label": "ㄕㄨㄟ"
+    },
+    {
+      "initial": "ㄕ",
+      "final": "ㄨㄢ",
+      "label": "ㄕㄨㄢ"
+    },
+    {
+      "initial": "ㄕ",
+      "final": "ㄨㄣ",
+      "label": "ㄕㄨㄣ"
+    },
+    {
+      "initial": "ㄕ",
+      "final": "ㄨㄤ",
+      "label": "ㄕㄨㄤ"
+    },
+    {
+      "initial": "ㄖ",
+      "final": "ㄜ",
+      "label": "ㄖㄜ"
+    },
+    {
+      "initial": "ㄖ",
+      "final": "ㄠ",
+      "label": "ㄖㄠ"
+    },
+    {
+      "initial": "ㄖ",
+      "final": "ㄡ",
+      "label": "ㄖㄡ"
+    },
+    {
+      "initial": "ㄖ",
+      "final": "ㄢ",
+      "label": "ㄖㄢ"
+    },
+    {
+      "initial": "ㄖ",
+      "final": "ㄣ",
+      "label": "ㄖㄣ"
+    },
+    {
+      "initial": "ㄖ",
+      "final": "ㄤ",
+      "label": "ㄖㄤ"
+    },
+    {
+      "initial": "ㄖ",
+      "final": "ㄥ",
+      "label": "ㄖㄥ"
+    },
+    {
+      "initial": "ㄖ",
+      "final": "ㄨ",
+      "label": "ㄖㄨ"
+    },
+    {
+      "initial": "ㄖ",
+      "final": "ㄨㄛ",
+      "label": "ㄖㄨㄛ"
+    },
+    {
+      "initial": "ㄖ",
+      "final": "ㄨㄟ",
+      "label": "ㄖㄨㄟ"
+    },
+    {
+      "initial": "ㄖ",
+      "final": "ㄨㄢ",
+      "label": "ㄖㄨㄢ"
+    },
+    {
+      "initial": "ㄖ",
+      "final": "ㄨㄣ",
+      "label": "ㄖㄨㄣ"
+    },
+    {
+      "initial": "ㄖ",
+      "final": "ㄨㄥ",
+      "label": "ㄖㄨㄥ"
+    },
+    {
+      "initial": "ㄗ",
+      "final": "ㄚ",
+      "label": "ㄗㄚ"
+    },
+    {
+      "initial": "ㄗ",
+      "final": "ㄜ",
+      "label": "ㄗㄜ"
+    },
+    {
+      "initial": "ㄗ",
+      "final": "ㄞ",
+      "label": "ㄗㄞ"
+    },
+    {
+      "initial": "ㄗ",
+      "final": "ㄟ",
+      "label": "ㄗㄟ"
+    },
+    {
+      "initial": "ㄗ",
+      "final": "ㄠ",
+      "label": "ㄗㄠ"
+    },
+    {
+      "initial": "ㄗ",
+      "final": "ㄡ",
+      "label": "ㄗㄡ"
+    },
+    {
+      "initial": "ㄗ",
+      "final": "ㄢ",
+      "label": "ㄗㄢ"
+    },
+    {
+      "initial": "ㄗ",
+      "final": "ㄣ",
+      "label": "ㄗㄣ"
+    },
+    {
+      "initial": "ㄗ",
+      "final": "ㄤ",
+      "label": "ㄗㄤ"
+    },
+    {
+      "initial": "ㄗ",
+      "final": "ㄥ",
+      "label": "ㄗㄥ"
+    },
+    {
+      "initial": "ㄗ",
+      "final": "ㄨ",
+      "label": "ㄗㄨ"
+    },
+    {
+      "initial": "ㄗ",
+      "final": "ㄨㄛ",
+      "label": "ㄗㄨㄛ"
+    },
+    {
+      "initial": "ㄗ",
+      "final": "ㄨㄟ",
+      "label": "ㄗㄨㄟ"
+    },
+    {
+      "initial": "ㄗ",
+      "final": "ㄨㄢ",
+      "label": "ㄗㄨㄢ"
+    },
+    {
+      "initial": "ㄗ",
+      "final": "ㄨㄣ",
+      "label": "ㄗㄨㄣ"
+    },
+    {
+      "initial": "ㄗ",
+      "final": "ㄨㄥ",
+      "label": "ㄗㄨㄥ"
+    },
+    {
+      "initial": "ㄘ",
+      "final": "ㄚ",
+      "label": "ㄘㄚ"
+    },
+    {
+      "initial": "ㄘ",
+      "final": "ㄜ",
+      "label": "ㄘㄜ"
+    },
+    {
+      "initial": "ㄘ",
+      "final": "ㄞ",
+      "label": "ㄘㄞ"
+    },
+    {
+      "initial": "ㄘ",
+      "final": "ㄠ",
+      "label": "ㄘㄠ"
+    },
+    {
+      "initial": "ㄘ",
+      "final": "ㄡ",
+      "label": "ㄘㄡ"
+    },
+    {
+      "initial": "ㄘ",
+      "final": "ㄢ",
+      "label": "ㄘㄢ"
+    },
+    {
+      "initial": "ㄘ",
+      "final": "ㄣ",
+      "label": "ㄘㄣ"
+    },
+    {
+      "initial": "ㄘ",
+      "final": "ㄤ",
+      "label": "ㄘㄤ"
+    },
+    {
+      "initial": "ㄘ",
+      "final": "ㄥ",
+      "label": "ㄘㄥ"
+    },
+    {
+      "initial": "ㄘ",
+      "final": "ㄨ",
+      "label": "ㄘㄨ"
+    },
+    {
+      "initial": "ㄘ",
+      "final": "ㄨㄛ",
+      "label": "ㄘㄨㄛ"
+    },
+    {
+      "initial": "ㄘ",
+      "final": "ㄨㄟ",
+      "label": "ㄘㄨㄟ"
+    },
+    {
+      "initial": "ㄘ",
+      "final": "ㄨㄢ",
+      "label": "ㄘㄨㄢ"
+    },
+    {
+      "initial": "ㄘ",
+      "final": "ㄨㄣ",
+      "label": "ㄘㄨㄣ"
+    },
+    {
+      "initial": "ㄘ",
+      "final": "ㄨㄥ",
+      "label": "ㄘㄨㄥ"
+    },
+    {
+      "initial": "ㄙ",
+      "final": "ㄚ",
+      "label": "ㄙㄚ"
+    },
+    {
+      "initial": "ㄙ",
+      "final": "ㄜ",
+      "label": "ㄙㄜ"
+    },
+    {
+      "initial": "ㄙ",
+      "final": "ㄞ",
+      "label": "ㄙㄞ"
+    },
+    {
+      "initial": "ㄙ",
+      "final": "ㄠ",
+      "label": "ㄙㄠ"
+    },
+    {
+      "initial": "ㄙ",
+      "final": "ㄡ",
+      "label": "ㄙㄡ"
+    },
+    {
+      "initial": "ㄙ",
+      "final": "ㄢ",
+      "label": "ㄙㄢ"
+    },
+    {
+      "initial": "ㄙ",
+      "final": "ㄣ",
+      "label": "ㄙㄣ"
+    },
+    {
+      "initial": "ㄙ",
+      "final": "ㄤ",
+      "label": "ㄙㄤ"
+    },
+    {
+      "initial": "ㄙ",
+      "final": "ㄥ",
+      "label": "ㄙㄥ"
+    },
+    {
+      "initial": "ㄙ",
+      "final": "ㄨ",
+      "label": "ㄙㄨ"
+    },
+    {
+      "initial": "ㄙ",
+      "final": "ㄨㄛ",
+      "label": "ㄙㄨㄛ"
+    },
+    {
+      "initial": "ㄙ",
+      "final": "ㄨㄟ",
+      "label": "ㄙㄨㄟ"
+    },
+    {
+      "initial": "ㄙ",
+      "final": "ㄨㄢ",
+      "label": "ㄙㄨㄢ"
+    },
+    {
+      "initial": "ㄙ",
+      "final": "ㄨㄣ",
+      "label": "ㄙㄨㄣ"
+    },
+    {
+      "initial": "ㄙ",
+      "final": "ㄨㄥ",
+      "label": "ㄙㄨㄥ"
+    }
+  ]
+}

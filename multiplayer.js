@@ -1,6 +1,6 @@
-import {Race} from './race-core.js?v=20260913-stars4';
-import {questionDeck,optionsFor} from './core.js?v=20260913-stars4';
-import {CHARACTERS,STARTERS,portrait} from './characters.js?v=20260913-stars4';
+import {Race} from './race-core.js?v=20260913-vertical1';
+import {questionDeck,optionsFor} from './core.js?v=20260913-vertical1';
+import {CHARACTERS,STARTERS,portrait} from './characters.js?v=20260913-vertical1';
 
 const animals=CHARACTERS.map(c=>[c.emoji,c.name]);
 const keys=[['a','s','d','f'],['h','j','k','l']];
@@ -48,7 +48,7 @@ export function createMultiplayer({onExit,onFinish,getOwned,getSeats}){
   const target=race.current;currentOptions=optionsFor(target,pool,count);sound.pause();sound.src=target.audio;
   $('race-progress').textContent=`${race.index+1} / ${race.deck.length}`;$('race-next').hidden=true;$('race-listen').disabled=!ready.every(Boolean);$('race-cue-symbol').textContent=ready.every(Boolean)?'👂':'👇';
   $('race-message').textContent=ready.every(Boolean)?'👂 → ⚡':'👇 🐾';
-  $('race-arena').innerHTML=[0,1].map(i=>`<section class="race-panel team-${i}" aria-label="${i===0?'左方藍隊':'右方橘隊'}"><div class="race-player">${teamMarkup(i)}<strong id="race-score-${i}">🏁 ${race.scores[i]}</strong></div><div id="race-player-status-${i}" class="race-player-status"></div><div class="race-options">${currentOptions.map((q,n)=>`<button class="race-option" data-race-player="${i}" data-choice="${n}" disabled aria-label="${i===0?'藍隊':'橘隊'} ${escape(q.label)}"><span>${escape(q.label)}</span><small>${keys[i][n].toUpperCase()}</small></button>`).join('')}</div>${!ready[i]?`<button class="race-ready" data-ready="${i}" aria-label="${animals[picked[i]][1]}準備好了">${character(i)}<span>▶</span></button>`:''}</section>`).join('');
+  $('race-arena').innerHTML=[0,1].map(i=>`<section class="race-panel team-${i}" aria-label="${i===0?'左方藍隊':'右方橘隊'}"><div class="race-player">${teamMarkup(i)}<strong id="race-score-${i}">🏁 ${race.scores[i]}</strong></div><div id="race-player-status-${i}" class="race-player-status"></div><div class="race-options">${currentOptions.map((q,n)=>`<button class="race-option" data-race-player="${i}" data-choice="${n}" disabled aria-label="${i===0?'藍隊':'橘隊'} ${escape(q.displayLabel||q.label)}"><span>${escape(q.label)}</span><small>${keys[i][n].toUpperCase()}</small></button>`).join('')}</div>${!ready[i]?`<button class="race-ready" data-ready="${i}" aria-label="${animals[picked[i]][1]}準備好了">${character(i)}<span>▶</span></button>`:''}</section>`).join('');
   stage.querySelectorAll('[data-ready]').forEach(b=>{b.innerHTML=portrait(CHARACTERS[picked[Number(b.dataset.ready)]])+'<span>▶</span>';b.onclick=()=>{const i=Number(b.dataset.ready);ready[i]=true;b.remove();$('race-player-status-'+i).textContent='✅';if(ready.every(Boolean))playQuestion();};});
   stage.querySelectorAll('[data-race-player]').forEach(b=>{
    const submit=()=>choose(Number(b.dataset.racePlayer),Number(b.dataset.choice));
@@ -62,7 +62,7 @@ export function createMultiplayer({onExit,onFinish,getOwned,getSeats}){
   $('race-player-status-'+player).textContent=result.correct?'🏁 +1':'⏸';$('race-listen').disabled=true;lockButtons();
   if(result.resolved){generation++;sound.pause();race.rows.at(-1).seconds=Math.max(0,Math.round((Date.now()-questionStarted)/1000));
    $('race-cue-symbol').textContent=result.winner===null?'🤝':character(result.winner)+' 🏁';
-   $('race-message').textContent=`${result.winner===null?'🤝':'🏁'} ${race.current.label}`;
+   $('race-message').textContent=`${result.winner===null?'🤝':'🏁'} ${(race.current.displayLabel||race.current.label)}`;
    [0,1].forEach(i=>$('race-score-'+i).textContent='🏁 '+race.scores[i]);
    stage.querySelectorAll('[data-choice]').forEach(b=>{if(currentOptions[Number(b.dataset.choice)].label===race.current.label)b.classList.add('race-correct');});
    $('race-next').textContent=race.index===race.deck.length-1?'🎉 →':'▶';$('race-next').hidden=false;$('race-listen').disabled=true;

@@ -1,10 +1,11 @@
-import {BASE,COMPOUNDS,normalizeConfig,createCatalog,poolFor,optionsFor,shuffle,questionDeck,Round} from './core.js?v=20260913-daily2';
-import {createMultiplayer} from './multiplayer.js?v=20260913-daily2';
-import {createRewards} from './rewards.js?v=20260913-daily2';
-import {portrait} from './characters.js?v=20260913-daily2';
-import {setupChildUI} from './child-ui.js?v=20260913-daily2';
-import {setupCozyUI} from './cozy-ui.js?v=20260913-daily2';
-import {createStudentAuth} from './student-auth.js?v=20260913-daily2';
+import {BASE,COMPOUNDS,normalizeConfig,createCatalog,poolFor,optionsFor,shuffle,questionDeck,Round} from './core.js?v=20260913-login1';
+import {createMultiplayer} from './multiplayer.js?v=20260913-login1';
+import {createRewards} from './rewards.js?v=20260913-login1';
+import {portrait} from './characters.js?v=20260913-login1';
+import {setupChildUI} from './child-ui.js?v=20260913-login1';
+import {setupCozyUI} from './cozy-ui.js?v=20260913-login1';
+import {createStudentAuth} from './student-auth.js?v=20260913-login1';
+import {createApiClient} from './api-client.js?v=20260913-login1';
 const API='https://script.google.com/macros/s/AKfycbzthN7YNMjzy_kBbKSOXMb0MLeTsy3hjk_ILn0Av7iHKaBEWjxAKOjL06SMfDQan8ac/exec';
 const demo=new URLSearchParams(location.search).get('demo')==='1';
 const names={single:'聲音森林',compound:'彩虹溪谷',spelling:'拼音工坊'};
@@ -27,7 +28,8 @@ $('app').innerHTML=`<header><a class="brand" href="./${demo?'?demo=1':''}"><span
 <main id="result" hidden><section class="result-card"><div class="celebration" aria-hidden="true">✦</div><p class="eyebrow">今天又前進了一步</p><h1>探險完成！</h1><div id="result-details"></div><p id="save-status" class="small" role="status"></p><button id="retry-save" class="text-button" hidden>重新傳送紀錄</button><div class="result-actions"><button id="again" class="primary">再練一次</button><button id="back-home" class="secondary">回到島嶼</button></div></section></main>
 <dialog id="leave-dialog"><h2>要先離開這次探險嗎？</h2><p>完成整回合才會記錄成績，這回合還沒完成喔。</p><div class="result-actions"><button id="stay" class="primary">繼續探險</button><button id="confirm-leave" class="secondary">回到島嶼</button></div></dialog><footer>注音探險島<span>聽見聲音，看見進步。</span></footer>`;
 const raceButton=document.createElement('button');raceButton.id='race';raceButton.textContent='⚡ 雙人搶答';raceButton.setAttribute('aria-pressed','false');$('duo').after(raceButton);
-async function postJSON(payload){const response=await fetch(API,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload),signal:AbortSignal.timeout(20000)});if(!response.ok)throw new Error('network');return response.json();}
+const apiClient=createApiClient(API);
+const postJSON=payload=>apiClient.post(payload);
 const auth=createStudentAuth({demo,getConfig:()=>config,post:postJSON});
 let rewards;
 const teamUI=createMultiplayer({getOwned:seat=>rewards?.owned(seat),getSeats:()=>[$('seat').value,$('partner').value],onExit:home,onFinish:(payload,html)=>{screen('result');$('result-details').innerHTML=html;persistResults([payload]);}});
@@ -44,7 +46,7 @@ function refreshHome(){
  $('connection').textContent=demo?'老師試玩模式':'已讀取老師任務';
  $('collection').textContent=playStyle==='race'?'左右搶答 · 比賽另存，不計入每日練習／全對':duo?'輪流答題，每人完成一整回合':'慢慢練，一次比一次熟悉';
 }
-async function jsonGet(params=''){const p=new URLSearchParams(params);if(p.get('api')&&p.get('api')!=='config')return auth.request({kind:'query',api:p.get('api'),seat:p.get('seat')||$('seat').value,id:p.get('id')||''});p.set('_fresh',String(Date.now()));const r=await fetch(API+'?'+p.toString(),{cache:'no-store',signal:AbortSignal.timeout(20000)});if(!r.ok)throw new Error('network');return r.json();}
+async function jsonGet(params=''){const p=new URLSearchParams(params);if(p.get('api')&&p.get('api')!=='config')return auth.request({kind:'query',api:p.get('api'),seat:p.get('seat')||$('seat').value,id:p.get('id')||''});return apiClient.get(Object.fromEntries(p));}
 async function load(){
  $('reload').disabled=true;$('home-message').textContent='';
  try{catalog=createCatalog(await fetch('data/syllables.json').then(r=>{if(!r.ok)throw new Error();return r.json();}));

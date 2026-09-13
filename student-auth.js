@@ -1,13 +1,21 @@
 // Production tokens live only in memory. PINs never enter URLs or score payloads.
+export function loginFeedback(code,retryAfter){
+ if(code==='invalid_pin')return {icon:'🔁 🔒',label:'密碼不正確，請再試一次'};
+ if(code==='locked'){const seconds=Math.min(300,Math.max(1,Math.ceil(Number(retryAfter)||300)));return {icon:'⏳ '+Math.floor(seconds/60)+':'+String(seconds%60).padStart(2,'0'),label:'暫時鎖定，請等 '+seconds+' 秒後再試，或請老師協助'};}
+ if(code==='request_timeout')return {icon:'📶 ⏳',label:'連線等候逾時，尚未確認密碼；請稍後再試'};
+ if(['network_error','http_error','invalid_response'].includes(code))return {icon:'📶 ⚠',label:'無法連線驗證，並非密碼錯誤；請老師確認網路與後台'};
+ return {icon:'🛠 ⚠',label:'後台驗證發生錯誤，並非密碼錯誤；請找老師協助'};
+}
 export function createStudentAuth({demo,getConfig,post}){
  const sessions=new Map();let busy=false,active=null,buffer='',resolvePrompt=null;
  const dialog=document.createElement('dialog');dialog.id='pin-dialog';dialog.innerHTML='<div class="pin-top"><strong id="pin-seat"></strong><button type="button" id="pin-cancel" class="icon-button" aria-label="取消登入">✕</button></div><div class="pin-lock" aria-hidden="true">🔒</div><output id="pin-dots" aria-label="已輸入零位密碼">○ ○ ○ ○</output><p id="pin-status" role="status"></p><div class="pin-pad">'+[1,2,3,4,5,6,7,8,9,'clear',0,'back'].map(n=>`<button type="button" data-pin="${n}" aria-label="${n==='clear'?'全部清除':n==='back'?'刪除一位':n}">${n==='clear'?'↺':n==='back'?'⌫':n}</button>`).join('')+'</div>';
  document.body.append(dialog);
  const $=id=>document.getElementById(id);
+ function showFailure(code,retryAfter){const message=loginFeedback(code,retryAfter);$('pin-status').textContent=message.icon;$('pin-status').setAttribute('aria-label',message.label);$('pin-status').setAttribute('title',message.label);}
  function display(){ $('pin-dots').textContent=Array.from({length:4},(_,i)=>i<buffer.length?'●':'○').join(' ');$('pin-dots').setAttribute('aria-label','已輸入 '+buffer.length+' 位密碼');dialog.querySelectorAll('[data-pin]').forEach(b=>b.disabled=busy);$('pin-cancel').disabled=busy;}
  function finish(ok){buffer='';active=null;dialog.close();const resolve=resolvePrompt;resolvePrompt=null;resolve?.(ok);}
  async function submit(){
-  if(busy||buffer.length!==4)return;busy=true;display();$('pin-status').textContent='…';
+  if(busy||buffer.length!==4)return;busy=true;display();$('pin-status').textContent='…';$('pin-status').setAttribute('aria-label','正在連線驗證，請稍候');$('pin-status').removeAttribute('title');
   try{
    let out;
    if(demo){
@@ -16,9 +24,9 @@ export function createStudentAuth({demo,getConfig,post}){
     else if(buffer===(pins[active]||'1234')){out={ok:true,token:'demo-'+active,expires:Date.now()+7200000};sessionStorage.removeItem('zhuyin.demo.pin-fails.'+active);}
     else{const count=(fail.until?0:fail.count||0)+1;sessionStorage.setItem('zhuyin.demo.pin-fails.'+active,JSON.stringify({count,until:count>=5?Date.now()+300000:0}));out={ok:false,error:count>=5?'locked':'invalid_pin'};}
    }else out=await post({kind:'login',seat:active,pin:buffer});
-   buffer='';if(out.ok&&out.token){sessions.set(active,{token:out.token,expires:out.expires});finish(true);}
-   else{$('pin-status').textContent=out.error==='locked'?'⏳ 5:00':'🔁 🔒';$('pin-status').setAttribute('aria-label',out.error==='locked'?'連續輸錯，請等五分鐘或請老師重設':'密碼不正確，請再試一次');}
-  }catch{buffer='';$('pin-status').textContent='📶 ⚠';$('pin-status').setAttribute('aria-label','無法連線驗證，請老師確認網路與後台部署');}
+   buffer='';if(out?.ok===true&&typeof out.token==='string'&&out.token&&Number.isFinite(out.expires)&&out.expires>Date.now()){sessions.set(active,{token:out.token,expires:out.expires});finish(true);}
+   else showFailure(out?.error,out?.retryAfter);
+  }catch(error){buffer='';showFailure(error.message);}
   finally{busy=false;display();}
  }
  function key(value){if(busy)return;if(value==='clear')buffer='';else if(value==='back')buffer=buffer.slice(0,-1);else if(/^\d$/.test(value)&&buffer.length<4)buffer+=value;display();if(buffer.length===4)submit();}
@@ -31,7 +39,7 @@ export function createStudentAuth({demo,getConfig,post}){
   forget(seat){sessions.delete(seat);},
   async ensure(seat){if(!seat)return false;if(verified(seat))return true;if(active)return false;
    if(!demo&&!getConfig()?.authRequired){document.getElementById('home-message').textContent='請老師先部署密碼後台，才能登入。';return false;}
-   active=seat;buffer='';$('pin-seat').textContent='🔢 '+seat;$('pin-status').textContent='';display();dialog.showModal();return new Promise(resolve=>resolvePrompt=resolve);
+   active=seat;buffer='';$('pin-seat').textContent='🔢 '+seat;$('pin-status').textContent='';$('pin-status').removeAttribute('aria-label');$('pin-status').removeAttribute('title');display();dialog.showModal();return new Promise(resolve=>resolvePrompt=resolve);
   },
   decorate(payload){
    const list=payload.kind==='race'?payload.seats:payload.competition?.seats;

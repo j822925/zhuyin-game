@@ -26,3 +26,5 @@
 - https://support.apple.com/zh-tw/guide/ipad/ipad8f1f7a29/ipados
 - https://developer.apple.com/library/archive/documentation/AppleApplications/Reference/SafariWebContent/ConfiguringWebApplications/ConfiguringWebApplications.html
 - https://webkit.org/blog/13878/web-push-for-web-apps-on-ios-and-ipados/
+
+98355d9 已上傳 GitHub 主分支，啟動正式網站發布；安裝入口為 /zhuyin-game/?v=20260913-home1，教學頁為 /zhuyin-game/install.html。

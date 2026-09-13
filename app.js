@@ -1,12 +1,13 @@
-import {setVerticalSymbols,showSpellingTone} from './spelling-layout.js?v=20260913-vertical1';
-import {BASE,COMPOUNDS,normalizeConfig,createCatalog,poolFor,optionsFor,shuffle,questionDeck,Round} from './core.js?v=20260913-vertical1';
-import {createMultiplayer} from './multiplayer.js?v=20260913-vertical1';
-import {createRewards} from './rewards.js?v=20260913-vertical1';
-import {portrait} from './characters.js?v=20260913-vertical1';
-import {setupChildUI} from './child-ui.js?v=20260913-vertical1';
-import {setupCozyUI} from './cozy-ui.js?v=20260913-vertical1';
-import {createStudentAuth} from './student-auth.js?v=20260913-vertical1';
-import {createApiClient} from './api-client.js?v=20260913-vertical1';
+import {createLittleTeacher} from './little-teacher.js?v=20260913-tutor1';
+import {setVerticalSymbols,showSpellingTone} from './spelling-layout.js?v=20260913-tutor1';
+import {BASE,COMPOUNDS,normalizeConfig,createCatalog,poolFor,optionsFor,shuffle,questionDeck,Round} from './core.js?v=20260913-tutor1';
+import {createMultiplayer} from './multiplayer.js?v=20260913-tutor1';
+import {createRewards} from './rewards.js?v=20260913-tutor1';
+import {portrait} from './characters.js?v=20260913-tutor1';
+import {setupChildUI} from './child-ui.js?v=20260913-tutor1';
+import {setupCozyUI} from './cozy-ui.js?v=20260913-tutor1';
+import {createStudentAuth} from './student-auth.js?v=20260913-tutor1';
+import {createApiClient} from './api-client.js?v=20260913-tutor1';
 const API='https://script.google.com/macros/s/AKfycbzthN7YNMjzy_kBbKSOXMb0MLeTsy3hjk_ILn0Av7iHKaBEWjxAKOjL06SMfDQan8ac/exec';
 const demo=new URLSearchParams(location.search).get('demo')==='1';
 const names={single:'聲音森林',spelling:'拼音工坊'};
@@ -36,6 +37,10 @@ let rewards;
 const teamUI=createMultiplayer({getOwned:seat=>rewards?.owned(seat),getSeats:()=>[$('seat').value,$('partner').value],onExit:home,onFinish:(payload,html)=>{screen('result');$('result-details').innerHTML=html;persistResults([payload]);}});
 rewards=createRewards({demo,getConfig:()=>config,getSeat:()=>auth.verified($('seat').value)?$('seat').value:'',getSeats:()=>[$('seat').value,$('partner').value].filter(s=>auth.verified(s)),jsonGet,post:payload=>auth.request(payload),onChange:()=>{teamUI.refreshPicker();if($('seat').value)document.querySelector('.mascot').innerHTML=portrait(rewards.avatar($('seat').value));}});
 const voiceHelp=setupChildUI({demo,onPreviewBonus:()=>rewards.previewBonus(),onBeforeVoice:()=>audio.pause()});
+const tutorButton=document.createElement('button');tutorButton.id='little-teacher';tutorButton.hidden=true;tutorButton.setAttribute('aria-label','小老師：看答案，聽拼音示範');tutorButton.innerHTML='<img src="assets/characters/cozy-v1/owl.png" alt=""><span aria-hidden="true">🎓</span>';$('audio-status').after(tutorButton);
+const tutor=createLittleTeacher({onReturn:()=>{clearSpelling();audio.src=rounds[active].current.audio;play();}});
+tutorButton.onclick=()=>{const r=rounds[active];if(mode!=='spelling'||!r?.canUseTutor||tutor.open)return;const result=r.useTutor(currentPool);if(result.ignored)return;voiceHelp.stop();audio.pause();audioReady=false;clearSpelling();setAnswerEnabled(false);$('question-number').textContent=`${r.index+1} / ${r.deck.length}`;$('progress-fill').style.width=`${r.index/r.deck.length*100}%`;tutor.show(r.current);};
+function clearSpelling(){selected={};for(const b of document.querySelectorAll('.slot')){b.textContent='';b.classList.remove('filled');b.setAttribute('aria-label',b.dataset.slot==='initial'?'聲符位置':'韻符或結合韻位置');}showSpellingTone(document.querySelector('#spelling .slots'),rounds[active].current);$('check-spelling').disabled=true;}
 setupCozyUI();
 function screen(id){for(const name of ['home','game','result'])$(name).hidden=name!==id;window.scrollTo(0,0);}
 function refreshHome(){
@@ -50,7 +55,7 @@ function refreshHome(){
 async function jsonGet(params=''){const p=new URLSearchParams(params);if(p.get('api')&&p.get('api')!=='config')return auth.request({kind:'query',api:p.get('api'),seat:p.get('seat')||$('seat').value,id:p.get('id')||''});return apiClient.get(Object.fromEntries(p));}
 async function load(){
  $('reload').disabled=true;$('home-message').textContent='';
- try{catalog=createCatalog(await fetch('data/syllables.json?v=20260913-vertical1').then(r=>{if(!r.ok)throw new Error();return r.json();}));
+ try{catalog=createCatalog(await fetch('data/syllables.json?v=20260913-tutor1').then(r=>{if(!r.ok)throw new Error();return r.json();}));
   config=normalizeConfig(demo?{version:2,symbols:({fo2:['ㄈ','ㄛ'],lve4:['ㄌ','ㄩㄝ']})[new URLSearchParams(location.search).get('lesson')]||['ㄅ','ㄆ','ㄇ','ㄉ','ㄧ','ㄠ'],compounds:[],seats:Array.from({length:15},(_,i)=>String(i+1)),questions:10,spellingApproved:true}:await jsonGet('?api=config'));
   refreshHome();if(config.legacy)$('home-message').textContent='老師提醒：目前連接舊版後台。正式記錄前，請先更新後台；現在仍可讀取已教注音。';
   // Pending records wait until their student has authenticated.
@@ -74,8 +79,9 @@ async function start(id){
  session++;active=0;choices=Number($('difficulty').value);rounds=seats.map(()=>new Round(questionDeck(currentPool,config.questions)));latestIds=[];
  screen('game');renderQuestion();
 }
-function setAnswerEnabled(enabled){document.querySelectorAll('.option,.tile,.slot').forEach(b=>b.disabled=!enabled);$('check-spelling').disabled=!enabled||!selected.initial||!selected.final;}
+function setAnswerEnabled(enabled){enabled=enabled&&!tutor.open;document.querySelectorAll('.option,.tile,.slot').forEach(b=>b.disabled=!enabled);$('check-spelling').disabled=!enabled||!selected.initial||!selected.final;tutorButton.disabled=!rounds[active]?.canUseTutor||tutor.open;}
 async function play(){
+ if(tutor.open)return;
  voiceHelp.stop();
  const currentSession=session,question=rounds[active]?.current;
  if(!question)return;
@@ -85,6 +91,7 @@ async function play(){
 }
 audio.addEventListener('error',()=>{audioReady=false;setAnswerEnabled(false);$('audio-status').textContent='這段聲音暫時無法播放，請再按一次喇叭。';});
 function renderQuestion(){
+ tutor.close();tutorButton.hidden=mode!=='spelling'||(!demo&&!config.tutorWrites);
  const r=rounds[active],q=r.current;document.getElementById('game').classList.toggle('spelling-active',mode==='spelling');r.questionStarted=Date.now();selected={};audio.pause();audio.src=q.audio;audioReady=false;
  $('world-title').textContent=names[mode];$('question-number').textContent=`${r.index+1} / ${r.deck.length}`;
  $('progress-fill').style.width=`${r.index/r.deck.length*100}%`;$('player-turn').textContent=duo?'':`🔢 ${seats[active]}`;
@@ -104,7 +111,7 @@ function answer(value,button){
 function next(){const r=rounds[active];if(!r.locked)return;r.next();if(rounds.every(x=>x.index>=x.deck.length)){finish();return;}active=(active+1)%rounds.length;if(rounds[active].index>=rounds[active].deck.length)active=(active+1)%rounds.length;renderQuestion();}
 function finish(){audio.pause();teamUI.stop();screen('result');let html='';const results=[];
  rounds.forEach((r,i)=>{const correct=r.deck.length-r.mistakes;html+=`<h2>${safe(seats[i])} 號${r.mistakes===0?' · 全部答對！':''}</h2><div class="metrics"><div><strong>${correct}<small> / ${r.deck.length}</small></strong><span>第一次就答對</span></div><div><strong>${r.mistakes}</strong><span>需要再練的題目</span></div></div>`;const weak=[...new Set(r.rows.filter(x=>!x.firstCorrect).map(x=>x.target))];if(weak.length)html+='<p class="small">這幾個聲音，再當一次好朋友</p><div class="review-chips">'+weak.map(x=>`<button class="review-chip" data-review="${safe(x)}">${safe(x)} ♪</button>`).join('')+'</div>';const progress=read('zhuyin.progress.v2',{});progress[seats[i]]??={};progress[seats[i]][mode]=Math.max(progress[seats[i]][mode]||0,correct);write('zhuyin.progress.v2',progress);const key=`zhuyin.attempt.${seats[i]}`,attempt=read(key,0)+1;write(key,attempt);results.push({roundId:crypto.randomUUID(),seat:seats[i],attempt,total:r.deck.length,mistakes:r.mistakes,mode,seconds:Math.round((Date.now()-r.started)/1000),results:r.rows});});
- if(duo){const a=rounds[0].deck.length-rounds[0].mistakes,b=rounds[1].deck.length-rounds[1].mistakes;html+=`<p>${a===b?'兩隊平手，一起完成探險！':`${safe(seats[a>b?0:1])} 號得到較多星星，兩位都完成了探險！`}</p>`;}
+ if(duo){const a=-rounds[0].mistakes,b=-rounds[1].mistakes;html+=`<p>${a===b?'兩隊平手，一起完成探險！':`${safe(seats[a>b?0:1])} 號得到較多星星，兩位都完成了探險！`}</p>`;}
  $('result-details').innerHTML=html;document.querySelectorAll('[data-review]').forEach(b=>b.onclick=()=>{const q=currentPool.find(x=>(x.displayLabel||x.label)===b.dataset.review);audio.src=q.audio;audio.currentTime=0;audio.play().catch(()=>{$('save-status').textContent='複習聲音無法播放，請確認音量與網路。';});});
  if(duo){const competition={kind:'turn',seats:[...seats],rounds:results.map(({total,mistakes,results})=>({total,mistakes,results}))};results.forEach(r=>r.competition=competition);}
  persistResults(results);
@@ -123,7 +130,7 @@ $('solo').onclick=()=>selectStyle('solo');$('duo').onclick=()=>selectStyle('turn
 const selectedIdentities={seat:'',partner:''};
 for(const id of ['seat','partner'])$(id).onchange=async()=>{const seat=$(id).value;auth.forget(selectedIdentities[id]);auth.forget(seat);selectedIdentities[id]=seat;if(seat&&!await auth.ensure(seat))$(id).value='';await rewards.refresh();if(!demo)flushPending();};
 $('listen').onclick=play;$('check-spelling').onclick=()=>answer((selected.initial||'')+(selected.final||''));$('next').onclick=next;$('reload').onclick=load;$('demo-basic').onclick=()=>demoConfig(false);$('demo-expanded').onclick=()=>demoConfig(true);$('again').onclick=()=>start(mode);$('retry-save').onclick=flushPending;
-function home(){session++;audio.pause();teamUI.stop();screen('home');if(config)refreshHome();}
+function home(){session++;tutor.close();audio.pause();teamUI.stop();screen('home');if(config)refreshHome();}
 $('back-home').onclick=home;$('leave').onclick=()=>{$('leave-dialog').showModal();};$('stay').onclick=()=>$('leave-dialog').close();$('confirm-leave').onclick=()=>{$('leave-dialog').close();home();};
 document.querySelectorAll('.slot').forEach(b=>{b.onclick=()=>{if(rounds[active].locked||!audioReady)return;delete selected[b.dataset.slot];b.setAttribute('aria-label',b.dataset.slot==='initial'?'聲符位置':'韻符或結合韻位置');if(b.dataset.slot==='final')showSpellingTone(document.querySelector('#spelling .slots'),rounds[active].current);b.classList.remove('filled');b.textContent=b.dataset.slot==='initial'?'聲符':'韻符';$('check-spelling').disabled=true;};b.ondragover=e=>e.preventDefault();b.ondrop=e=>{e.preventDefault();try{const item=JSON.parse(e.dataTransfer.getData('text/plain'));if(item.kind===b.dataset.slot)place(item.kind,item.value);}catch{}};});
 // Pointer capture makes drag-and-drop work on touch tablets as well as mouse devices.

@@ -5,7 +5,7 @@ function readTasks_(){const s=SpreadsheetApp.getActiveSpreadsheet().getSheetByNa
 function findRound_(s,id){return !!(s&&id&&s.getLastRow()>1&&s.getRange(2,6,s.getLastRow()-1,1).createTextFinder(id).matchEntireCell(true).findNext());}
 function doGet(e){
  const p=e&&e.parameter||{},ss=SpreadsheetApp.getActiveSpreadsheet();
- if(p.api==='config'){const s=ss.getSheetByName('遊戲設定'),v=s?s.getRange('B2:B3').getValues().flat():[10,false],c=ss.getSheetByName('已教結合韻');return jsonResponse_({version:4,dailyCaps:true,rewardLimits:{single:dailyRewardLimits_('single'),compound:dailyRewardLimits_('compound'),spelling:dailyRewardLimits_('spelling')},authRequired:true,raceWrites:true,rewardsWrites:true,symbols:readTasks_(),compounds:c?c.getRange('A2:A100').getValues().flat().filter(String):[],seats:getRoster_().map(r=>r.id),questions:10,spellingApproved:v[1]===true});}
+ if(p.api==='config'){const s=ss.getSheetByName('遊戲設定'),v=s?s.getRange('B2:B3').getValues().flat():[10,false],c=ss.getSheetByName('已教結合韻');return jsonResponse_({version:4,tutorWrites:true,dailyCaps:true,rewardLimits:{single:dailyRewardLimits_('single'),compound:dailyRewardLimits_('compound'),spelling:dailyRewardLimits_('spelling')},authRequired:true,raceWrites:true,rewardsWrites:true,symbols:readTasks_(),compounds:c?c.getRange('A2:A100').getValues().flat().filter(String):[],seats:getRoster_().map(r=>r.id),questions:10,spellingApproved:v[1]===true});}
  if(p.api)return jsonResponse_({error:'authentication_required'});
  return jsonResponse_(readTasks_());
 }
@@ -21,20 +21,42 @@ function doPost(e){
   if(d.kind==='gacha'||d.kind==='redeem')return transactCharacter_(d);
   const m=String(d.seat||'').match(/^(\d{1,3})(?:\s|$)/),student=m&&getRoster_().find(r=>r.id===m[1].padStart(2,'0'));
   if(!student)throw new Error('unknown_student');
-  if(!Number.isInteger(d.total)||d.total<1||d.total>40||!Number.isInteger(d.mistakes)||d.mistakes<0||d.mistakes>d.total)throw new Error('invalid_score');
+  if(!Number.isInteger(d.total)||d.total<1||d.total>(d.mode==='spelling'?80:40)||!Number.isInteger(d.mistakes)||d.mistakes<0||d.mistakes>d.total)throw new Error('invalid_score');
   const id=d.roundId||'legacy-'+Utilities.getUuid(),mode=d.mode||'single';
   if(!/^[a-zA-Z0-9-]{16,80}$/.test(id)||!['single','compound','spelling'].includes(mode))throw new Error('invalid_id_or_mode');
   if(d.roundId&&(!Array.isArray(d.results)||d.results.length!==d.total||d.results.some(r=>typeof r.firstCorrect!=='boolean')||d.results.filter(r=>!r.firstCorrect).length!==d.mistakes))throw new Error('incomplete_round');
+  const eligible=validLearningRound_(d);
+  if(d.results?.some(r=>r.tutorUsed||r.tutorReviewOf||r.tutorSpacer)&&!eligible)throw new Error('invalid_tutor_round');
   const contestStars=d.competition?turnCompetitionStars_(d,student.id):null;
   lock=LockService.getScriptLock();lock.waitLock(15000);
   const s=student.test?ensureSheet_('測試紀錄',['時間','座號','挑戰次數','總題數','答錯題數','回合編號','關卡','耗時秒','首次答對題數','答題明細','學習星星','獎勵規則','輪流比賽明細','每日獎勵明細']):SpreadsheetApp.getActiveSpreadsheet().getSheetByName('過關紀錄');
   if(findRound_(s,id))return jsonResponse_({saved:true,id:id,duplicate:true,awards:savedAwards_(s,id,false)});
-  const at=new Date(),award=d.roundId&&d.total===10?dailyLearningAward_(student.id,contestStars===null?(mode==='spelling'?(d.mistakes===0?3:0):(d.mistakes===0?2:0)):contestStars,mode,contestStars!==null,at):null;
-  const detail=(d.results||[]).map(r=>({target:String(r.target||'').slice(0,8),firstCorrect:r.firstCorrect,errors:Math.max(0,Math.min(999,Number(r.errors)||0)),seconds:Math.max(0,Math.min(3600,Number(r.seconds)||0))}));
-  s.appendRow([at,student.id+' '+student.name,Number.isInteger(d.attempt)?Math.max(1,d.attempt):1,d.total,d.mistakes,id,mode,Math.max(0,Math.min(86400,Number(d.seconds)||0)),d.total-d.mistakes,JSON.stringify(detail),award?award.stars:0,d.roundId&&d.total===10?REWARD_RULE_:'',d.competition?JSON.stringify(d.competition):'',award?JSON.stringify(award):'' ]);
+  const at=new Date(),award=d.roundId&&eligible?dailyLearningAward_(student.id,contestStars===null?(mode==='spelling'?(d.mistakes===0?3:0):(d.mistakes===0?2:0)):contestStars,mode,contestStars!==null,at):null;
+  const detail=(d.results||[]).map(r=>({target:String(r.target||'').slice(0,8),firstCorrect:r.firstCorrect,errors:Math.max(0,Math.min(999,Number(r.errors)||0)),seconds:Math.max(0,Math.min(3600,Number(r.seconds)||0)),...(r.tutorUsed?{tutorUsed:true}:{}),...(r.tutorReviewOf?{tutorReviewOf:r.tutorReviewOf}:{}),...(r.tutorSpacer?{tutorSpacer:true}:{})}));
+  s.appendRow([at,student.id+' '+student.name,Number.isInteger(d.attempt)?Math.max(1,d.attempt):1,d.total,d.mistakes,id,mode,Math.max(0,Math.min(86400,Number(d.seconds)||0)),d.total-d.mistakes,JSON.stringify(detail),award?award.stars:0,d.roundId&&eligible?REWARD_RULE_:'',d.competition?JSON.stringify(d.competition):'',award?JSON.stringify(award):'' ]);
   SpreadsheetApp.flush();return jsonResponse_({saved:true,id:id,awards:award?[award]:[]});
  }catch(error){return jsonResponse_({saved:false,error:String(error.message||'save_failed')});}
  finally{if(lock&&lock.hasLock())lock.releaseLock();}
+}
+// Shared by demo rewards and the server (the server copy is parity-tested).
+function validLearningRound_(d){
+ if(!Array.isArray(d.results)||d.results.length!==d.total)return false;
+ const rows=d.results,hasTutor=rows.some(r=>r.tutorUsed||r.tutorReviewOf||r.tutorSpacer);
+ if(!hasTutor)return d.total===10;
+ if(d.mode!=='spelling'||d.kind==='race'||d.total<11||d.total>80)return false;
+ let uses=0,reviews=0,spacers=0;
+ for(let i=0;i<rows.length;i++){
+  const r=rows[i];
+  if(r.tutorUsed!==undefined&&r.tutorUsed!==true)return false;
+  if(r.tutorSpacer!==undefined&&r.tutorSpacer!==true)return false;
+  if(r.tutorUsed){uses++;if(rows.filter(x=>x.tutorReviewOf===i+1).length!==1)return false;}
+  if(r.tutorReviewOf!==undefined){
+   reviews++;const source=r.tutorReviewOf-1;
+   if(!Number.isInteger(source)||source<0||![2,3].includes(i-source)||!rows[source]?.tutorUsed||rows[source].target!==r.target||r.tutorSpacer)return false;
+  }
+  if(r.tutorSpacer){spacers++;if(!rows[i-1]?.tutorUsed||rows[i+1]?.tutorReviewOf!==i)return false;}
+ }
+ return uses===reviews&&d.total===10+reviews+spacers;
 }
 function validId_(id){return typeof id==='string'&&/^[a-zA-Z0-9-]{16,80}$/.test(id);}
 function ensureSheet_(name,headers){const ss=SpreadsheetApp.getActiveSpreadsheet();let s=ss.getSheetByName(name);if(!s){s=ss.insertSheet(name);s.appendRow(headers);s.setFrozenRows(1);}return s;}
@@ -84,8 +106,8 @@ function turnCompetitionStars_(d,seat){
  const c=d.competition;
  if(c.kind!=='turn'||!Array.isArray(c.seats)||c.seats.length!==2||c.seats[0]===c.seats[1]||!c.seats.every(id=>getRoster_().some(r=>r.id===id))||!Array.isArray(c.rounds)||c.rounds.length!==2)throw new Error('invalid_turn_competition');
  const i=c.seats.indexOf(seat);if(i<0)throw new Error('invalid_turn_competition');
- const scores=c.rounds.map(r=>{if(r.total!==10||!Number.isInteger(r.mistakes)||!Array.isArray(r.results)||r.results.length!==10||r.results.some(a=>typeof a.firstCorrect!=='boolean')||r.results.filter(a=>!a.firstCorrect).length!==r.mistakes)throw new Error('incomplete_turn_competition');return 10-r.mistakes;});
- if(c.rounds[i].mistakes!==d.mistakes||d.total!==10||JSON.stringify(c.rounds[i].results)!==JSON.stringify(d.results))throw new Error('mismatched_turn_competition');
+ const scores=c.rounds.map(r=>{if(!validLearningRound_({...r,mode:d.mode})||!Number.isInteger(r.mistakes)||!Array.isArray(r.results)||r.results.length!==r.total||r.results.some(a=>typeof a.firstCorrect!=='boolean')||r.results.filter(a=>!a.firstCorrect).length!==r.mistakes)throw new Error('incomplete_turn_competition');return -r.mistakes;});
+ if(c.rounds[i].mistakes!==d.mistakes||c.rounds[i].total!==d.total||JSON.stringify(c.rounds[i].results)!==JSON.stringify(d.results))throw new Error('mismatched_turn_competition');
  return competitionStars_(scores,i);
 }
 function wallet_(seat){

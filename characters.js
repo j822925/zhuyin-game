@@ -1,4 +1,4 @@
-import {CHARACTER_CATALOG} from './data/character-catalog.js?v=20260913-vertical1';
+import {CHARACTER_CATALOG} from './data/character-catalog.js?v=20260913-tutor1';
 export const CHARACTERS=CHARACTER_CATALOG;
 export const STARTERS=CHARACTERS.filter(c=>c.starter).map(c=>c.id);
 export const DRAW_COST=5;

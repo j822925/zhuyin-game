@@ -1,5 +1,5 @@
-import {CHARACTERS,STARTERS,DRAW_COST,REDEEM_COST,portrait,drawCharacter,redeemCharacter} from './characters.js?v=20260913-vertical1';
-import {cappedRoundAward,rewardParticipants,taipeiDay} from './learning-rewards.js?v=20260913-vertical1';
+import {CHARACTERS,STARTERS,DRAW_COST,REDEEM_COST,portrait,drawCharacter,redeemCharacter} from './characters.js?v=20260913-tutor1';
+import {cappedRoundAward,rewardParticipants,taipeiDay} from './learning-rewards.js?v=20260913-tutor1';
 export function createRewards({demo,getConfig,getSeat,getSeats,jsonGet,post,onChange}){
  const $=id=>document.getElementById(id),cache=new Map();let category='animal',busy=false,activeSeat='',previewPersistent=true,revealed=false;
  function read(key,fallback){try{return JSON.parse(localStorage.getItem(key))??fallback;}catch{return fallback;}}

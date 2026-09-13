@@ -1,4 +1,4 @@
-import {CHARACTERS,portrait} from './characters.js?v=20260913-vertical1';
+import {CHARACTERS,portrait} from './characters.js?v=20260913-tutor1';
 export function setupCozyUI(){
  document.body.classList.add('cozy-ui');
  document.querySelector('.top-actions').append(document.getElementById('voice-help'));

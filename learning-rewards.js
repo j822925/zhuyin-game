@@ -1,3 +1,4 @@
+import {validLearningRound} from './tutor-rules.js?v=20260913-tutor1';
 export const REWARD_RULE='daily-caps-v2';
 export const dailyLimits=mode=>({perfectStars:mode==='spelling'?12:4,perseveranceStars:mode==='spelling'?5:4});
 export const taipeiDay=(date=new Date())=>new Date(new Date(date).getTime()+8*3600000).toISOString().slice(0,10);
@@ -15,13 +16,13 @@ export function roundAward(completedRounds,baseStars,mode='single'){
  return {completedRounds:next,threshold,baseStars,perseveranceStars,stars:baseStars+perseveranceStars};
 }
 export function rewardParticipants(result){
- if(result.total!==10||!Array.isArray(result.results)||result.results.length!==10)return [];
+ if(result.kind==='race'?(result.total!==10||!Array.isArray(result.results)||result.results.length!==10):!validLearningRound(result))return [];
  if(result.kind==='race'){
   const scores=[0,1].map(i=>result.results.filter(r=>r.winner===i).length);
   return result.seats.map((seat,i)=>({seat,baseStars:competitionStars(scores,i)}));
  }
  if(result.competition?.kind==='turn'){
-  const i=result.competition.seats.indexOf(result.seat),scores=result.competition.rounds.map(r=>r.total-r.mistakes);
+  const i=result.competition.seats.indexOf(result.seat),scores=result.competition.rounds.map(r=>-r.mistakes);
   return i>=0?[{seat:result.seat,baseStars:competitionStars(scores,i)}]:[];
  }
  const perfect=result.mistakes===0&&result.results.every(r=>r.firstCorrect===true);

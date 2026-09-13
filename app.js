@@ -1,10 +1,10 @@
-import {BASE,COMPOUNDS,normalizeConfig,createCatalog,poolFor,optionsFor,shuffle,questionDeck,Round} from './core.js?v=20260913-daily1';
-import {createMultiplayer} from './multiplayer.js?v=20260913-daily1';
-import {createRewards} from './rewards.js?v=20260913-daily1';
-import {portrait} from './characters.js?v=20260913-daily1';
-import {setupChildUI} from './child-ui.js?v=20260913-daily1';
-import {setupCozyUI} from './cozy-ui.js?v=20260913-daily1';
-import {createStudentAuth} from './student-auth.js?v=20260913-daily1';
+import {BASE,COMPOUNDS,normalizeConfig,createCatalog,poolFor,optionsFor,shuffle,questionDeck,Round} from './core.js?v=20260913-daily2';
+import {createMultiplayer} from './multiplayer.js?v=20260913-daily2';
+import {createRewards} from './rewards.js?v=20260913-daily2';
+import {portrait} from './characters.js?v=20260913-daily2';
+import {setupChildUI} from './child-ui.js?v=20260913-daily2';
+import {setupCozyUI} from './cozy-ui.js?v=20260913-daily2';
+import {createStudentAuth} from './student-auth.js?v=20260913-daily2';
 const API='https://script.google.com/macros/s/AKfycbzthN7YNMjzy_kBbKSOXMb0MLeTsy3hjk_ILn0Av7iHKaBEWjxAKOjL06SMfDQan8ac/exec';
 const demo=new URLSearchParams(location.search).get('demo')==='1';
 const names={single:'聲音森林',compound:'彩虹溪谷',spelling:'拼音工坊'};
@@ -44,7 +44,7 @@ function refreshHome(){
  $('connection').textContent=demo?'老師試玩模式':'已讀取老師任務';
  $('collection').textContent=playStyle==='race'?'左右搶答 · 比賽另存，不計入每日練習／全對':duo?'輪流答題，每人完成一整回合':'慢慢練，一次比一次熟悉';
 }
-async function jsonGet(params=''){const p=new URLSearchParams(params);if(p.get('api')&&p.get('api')!=='config')return auth.request({kind:'query',api:p.get('api'),seat:p.get('seat')||$('seat').value,id:p.get('id')||''});const r=await fetch(API+params,{signal:AbortSignal.timeout(20000)});if(!r.ok)throw new Error('network');return r.json();}
+async function jsonGet(params=''){const p=new URLSearchParams(params);if(p.get('api')&&p.get('api')!=='config')return auth.request({kind:'query',api:p.get('api'),seat:p.get('seat')||$('seat').value,id:p.get('id')||''});p.set('_fresh',String(Date.now()));const r=await fetch(API+'?'+p.toString(),{cache:'no-store',signal:AbortSignal.timeout(20000)});if(!r.ok)throw new Error('network');return r.json();}
 async function load(){
  $('reload').disabled=true;$('home-message').textContent='';
  try{catalog=createCatalog(await fetch('data/syllables.json').then(r=>{if(!r.ok)throw new Error();return r.json();}));

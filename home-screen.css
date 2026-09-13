@@ -1,0 +1,3 @@
+/* Preserve iPad safe areas; never disable zoom or system gestures. */
+body{padding:env(safe-area-inset-top,0px) env(safe-area-inset-right,0px) env(safe-area-inset-bottom,0px) env(safe-area-inset-left,0px)}
+.brand .brand-app-icon{width:48px;height:48px;object-fit:cover;border-radius:13px;flex-shrink:0}

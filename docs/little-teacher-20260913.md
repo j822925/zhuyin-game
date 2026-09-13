@@ -22,6 +22,10 @@
 
 Apps Script 第 8 版已於 2026-09-13 15:29 成功發布，沿用原 /exec 網址。貼上前後逐字校驗，完整保留後段 9,671 字元的既有總覽程式，學生密碼.gs 未修改。公開設定已確認 tutorWrites=true、原定題數 10、每日上限聽音 4／4 與拼音 12／5。
 
-前端程式已推送 main，但本次 Pages 尚未啟動建置：21a69c0 與 50d266d 皆無 workflow/check run，正式 teacher.html 仍載入 20260913-vertical1。不可宣稱正式前端已發布。GitHub 瀏覽器尚未登入，已請老師登入以繼續確認／觸發發布；小老師可在本機示範模式使用，正式舊版仍正常相容後台第 8 版。
+前端程式已推送 main，但自動 Pages 未啟動：21a69c0 與 50d266d 皆無 workflow/check run。老師已完成 GitHub 登入。Pages 設定確認 main / root 正確；網站編輯器提交兩次失敗（File could not be edited），兩次均未提交，已捨棄本次未儲存的附加說明，原檔不變。
+
+已讀取原建置 job 103690205682 紀錄，確認 Checkout 明確使用 ref: main，故重新執行可建置最新主分支。UI 的 Re-run all jobs 回傳 GitHub 500；確認沒有建立新 attempt 後，透過已授權 GitHub 連線重新執行 build job，工具回傳 success=true。工作 34744651270 於 2026-09-13 17:15:15（台灣時間）改為 queued；17:20 後仍 queued、jobs 為空。尚未確認部署成功，不可宣稱小老師前端已上線。
+
+正式網址核對仍載入 app.js?v=20260913-vertical1，沒有 #little-teacher；舊版仍相容後台第 8 版。後續請等待此 queued 工作，不要重複送出建置。完成後須查 Checkout 實際提交及正式 application-version=20260913-tutor1，再用 demo 驗證小老師圖示、11 題全對 +3 星。已詢問老師是否要每 5 分鐘自動檢查；尚未取得同意，因此尚未建立自動排程。
 
 程式提交 25ab2b8，正式前端版本 20260913-tutor1，已送出 Pages 發布。

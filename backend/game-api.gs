@@ -5,7 +5,7 @@ function readTasks_(){const s=SpreadsheetApp.getActiveSpreadsheet().getSheetByNa
 function findRound_(s,id){return !!(s&&id&&s.getLastRow()>1&&s.getRange(2,6,s.getLastRow()-1,1).createTextFinder(id).matchEntireCell(true).findNext());}
 function doGet(e){
  const p=e&&e.parameter||{},ss=SpreadsheetApp.getActiveSpreadsheet();
- if(p.api==='config'){const s=ss.getSheetByName('遊戲設定'),v=s?s.getRange('B2:B3').getValues().flat():[10,false],c=ss.getSheetByName('已教結合韻');return jsonResponse_({version:4,authRequired:true,raceWrites:true,rewardsWrites:true,symbols:readTasks_(),compounds:c?c.getRange('A2:A100').getValues().flat().filter(String):[],seats:getRoster_().map(r=>r.id),questions:10,spellingApproved:v[1]===true});}
+ if(p.api==='config'){const s=ss.getSheetByName('遊戲設定'),v=s?s.getRange('B2:B3').getValues().flat():[10,false],c=ss.getSheetByName('已教結合韻');return jsonResponse_({version:4,dailyCaps:true,rewardLimits:{single:dailyRewardLimits_('single'),compound:dailyRewardLimits_('compound'),spelling:dailyRewardLimits_('spelling')},authRequired:true,raceWrites:true,rewardsWrites:true,symbols:readTasks_(),compounds:c?c.getRange('A2:A100').getValues().flat().filter(String):[],seats:getRoster_().map(r=>r.id),questions:10,spellingApproved:v[1]===true});}
  if(p.api)return jsonResponse_({error:'authentication_required'});
  return jsonResponse_(readTasks_());
 }
@@ -27,11 +27,12 @@ function doPost(e){
   if(d.roundId&&(!Array.isArray(d.results)||d.results.length!==d.total||d.results.some(r=>typeof r.firstCorrect!=='boolean')||d.results.filter(r=>!r.firstCorrect).length!==d.mistakes))throw new Error('incomplete_round');
   const contestStars=d.competition?turnCompetitionStars_(d,student.id):null;
   lock=LockService.getScriptLock();lock.waitLock(15000);
-  const s=student.test?ensureSheet_('測試紀錄',['時間','座號','挑戰次數','總題數','答錯題數','回合編號','關卡','耗時秒','首次答對題數','答題明細','學習星星','獎勵規則','輪流比賽明細']):SpreadsheetApp.getActiveSpreadsheet().getSheetByName('過關紀錄');
-  if(findRound_(s,id))return jsonResponse_({saved:true,id:id,duplicate:true});
+  const s=student.test?ensureSheet_('測試紀錄',['時間','座號','挑戰次數','總題數','答錯題數','回合編號','關卡','耗時秒','首次答對題數','答題明細','學習星星','獎勵規則','輪流比賽明細','每日獎勵明細']):SpreadsheetApp.getActiveSpreadsheet().getSheetByName('過關紀錄');
+  if(findRound_(s,id))return jsonResponse_({saved:true,id:id,duplicate:true,awards:savedAwards_(s,id,false)});
+  const at=new Date(),award=d.roundId&&d.total===10?dailyLearningAward_(student.id,contestStars===null?(mode==='spelling'?(d.mistakes===0?3:0):(d.mistakes===0?2:0)):contestStars,mode,contestStars!==null,at):null;
   const detail=(d.results||[]).map(r=>({target:String(r.target||'').slice(0,8),firstCorrect:r.firstCorrect,errors:Math.max(0,Math.min(999,Number(r.errors)||0)),seconds:Math.max(0,Math.min(3600,Number(r.seconds)||0))}));
-  s.appendRow([new Date(),student.id+' '+student.name,Number.isInteger(d.attempt)?Math.max(1,d.attempt):1,d.total,d.mistakes,id,mode,Math.max(0,Math.min(86400,Number(d.seconds)||0)),d.total-d.mistakes,JSON.stringify(detail),d.roundId&&d.total===10?learningAward_(student.id,contestStars===null?(mode==='spelling'?(d.mistakes===0?3:0):(d.mistakes===0?2:0)):contestStars,mode):0,d.roundId&&d.total===10?REWARD_RULE_:'',d.competition?JSON.stringify(d.competition):'' ]);
-  SpreadsheetApp.flush();return jsonResponse_({saved:true,id:id});
+  s.appendRow([at,student.id+' '+student.name,Number.isInteger(d.attempt)?Math.max(1,d.attempt):1,d.total,d.mistakes,id,mode,Math.max(0,Math.min(86400,Number(d.seconds)||0)),d.total-d.mistakes,JSON.stringify(detail),award?award.stars:0,d.roundId&&d.total===10?REWARD_RULE_:'',d.competition?JSON.stringify(d.competition):'',award?JSON.stringify(award):'' ]);
+  SpreadsheetApp.flush();return jsonResponse_({saved:true,id:id,awards:award?[award]:[]});
  }catch(error){return jsonResponse_({saved:false,error:String(error.message||'save_failed')});}
  finally{if(lock&&lock.hasLock())lock.releaseLock();}
 }
@@ -44,14 +45,40 @@ function allCharacters_(){return CHARACTER_CATALOG_.map(c=>c.id);}
 function starterCharacters_(){return CHARACTER_CATALOG_.filter(c=>c.starter).map(c=>c.id);}
 function characterPool_(category){return CHARACTER_CATALOG_.filter(c=>c.category===category&&c.enabled).map(c=>c.id);}
 // END GENERATED CHARACTER CATALOG
-const REWARD_RULE_='ten-rounds-v1';
+const REWARD_RULE_='daily-caps-v2';
+function isLearningRule_(value){return value===REWARD_RULE_||value==='ten-rounds-v1';}
+function rewardDay_(date){const time=new Date(date).getTime();return Number.isFinite(time)?new Date(time+8*3600000).toISOString().slice(0,10):'';}
+function dailyRewardLimits_(mode){return {perfectStars:mode==='spelling'?12:2,perseveranceStars:mode==='spelling'?5:2};}
+function dailyRewardUsage_(seat,mode,at){
+ const day=rewardDay_(at),usage={perfectStars:0,perseveranceStars:0};
+ function add(raw,total,base,competition){let award;try{award=JSON.parse(raw);}catch{}if(award&&award.day===day){usage.perfectStars+=Number(award.perfectStars)||0;usage.perseveranceStars+=Number(award.perseveranceStars)||0;}else{if(!competition)usage.perfectStars+=Math.min(total,base);usage.perseveranceStars+=Math.max(0,total-base);}}
+ for(const name of ['過關紀錄','測試紀錄'])for(const r of dataRows_(name,14)){
+  if(!isLearningRule_(r[11])||rewardDay_(r[0])!==day||r[6]!==mode||String(r[1]).split(' ')[0].padStart(2,'0')!==seat)continue;
+  let base=Number(r[4])===0?(mode==='spelling'?3:2):0;const competition=!!r[12];
+  if(competition){try{const c=JSON.parse(r[12]);base=competitionStars_(c.rounds.map(v=>v.total-v.mistakes),c.seats.indexOf(seat));}catch{base=Number(r[10])||0;}}
+  add(r[13],Number(r[10])||0,base,competition);
+ }
+ for(const r of dataRows_('搶答紀錄',17)){
+  if(!isLearningRule_(r[12])||rewardDay_(r[0])!==day||r[6]!==mode)continue;
+  for(let i=0;i<2;i++)if(String(r[1+i]).padStart(2,'0')===seat)add(r[15+i],Number(r[10+i])||0,competitionStars_([Number(r[3]),Number(r[4])],i),true);
+ }
+ return usage;
+}
+function dailyLearningAward_(seat,baseStars,mode,competition,at){
+ const usage=dailyRewardUsage_(seat,mode,at),limits=dailyRewardLimits_(mode);
+ const perfectStars=competition?0:Math.min(baseStars,Math.max(0,limits.perfectStars-usage.perfectStars));
+ const perseveranceStars=(completedLearningRounds_(seat,mode)+1)%(mode==='spelling'?2:3)===0?Math.min(1,Math.max(0,limits.perseveranceStars-usage.perseveranceStars)):0;
+ const competitionStars=competition?baseStars:0;
+ return {seat,day:rewardDay_(at),perfectStars,perseveranceStars,competitionStars,stars:perfectStars+perseveranceStars+competitionStars,limits};
+}
+function savedAwards_(sheet,id,race){const r=dataRows_(sheet.getName(),race?17:14).find(r=>r[5]===id);if(!r)return [];return (race?[r[15],r[16]]:[r[13]]).flatMap(raw=>{try{return [JSON.parse(raw)];}catch{return [];}});}
 function completedLearningRounds_(seat,mode){
  let count=0;
- for(const name of ['過關紀錄','測試紀錄'])for(const r of dataRows_(name,12))if(r[11]===REWARD_RULE_&&(mode===undefined||(r[6]==='spelling')===(mode==='spelling'))&&String(r[1]).split(' ')[0].padStart(2,'0')===seat)count++;
- for(const r of dataRows_('搶答紀錄',15))if(r[12]===REWARD_RULE_&&(mode===undefined||(r[6]==='spelling')===(mode==='spelling')))for(let i=0;i<2;i++)if(String(r[1+i]).padStart(2,'0')===seat&&r[13+i]===true)count++;
+ for(const name of ['過關紀錄','測試紀錄'])for(const r of dataRows_(name,12))if(isLearningRule_(r[11])&&(mode===undefined||(r[6]==='spelling')===(mode==='spelling'))&&String(r[1]).split(' ')[0].padStart(2,'0')===seat)count++;
+ for(const r of dataRows_('搶答紀錄',15))if(isLearningRule_(r[12])&&(mode===undefined||(r[6]==='spelling')===(mode==='spelling')))for(let i=0;i<2;i++)if(String(r[1+i]).padStart(2,'0')===seat&&r[13+i]===true)count++;
  return count;
 }
-function learningAward_(seat,baseStars,mode){return baseStars+((completedLearningRounds_(seat,mode)+1)%(mode==='spelling'?2:3)===0?1:0);}
+
 function competitionStars_(scores,i){return scores[0]===scores[1]?1:scores[i]>scores[1-i]?2:1;}
 function turnCompetitionStars_(d,seat){
  const c=d.competition;
@@ -66,7 +93,7 @@ function wallet_(seat){
  for(const name of ['過關紀錄','測試紀錄'])for(const row of dataRows_(name,11)){if(String(row[1]).split(' ')[0].padStart(2,'0')===seat)stars+=Number(row[10])||0;}
  for(const row of dataRows_('搶答紀錄',12)){if(String(row[1]).padStart(2,'0')===seat)stars+=Number(row[10])||0;if(String(row[2]).padStart(2,'0')===seat)stars+=Number(row[11])||0;}
  for(const row of dataRows_('角色交易',9)){if(String(row[1]).padStart(2,'0')!==seat)continue;stars+=Number(row[4])||0;candies+=Number(row[6])||0;if(allCharacters_().includes(row[3])&&!owned.includes(row[3]))owned.push(row[3]);}
- return {stars,candies,owned,practiceRounds:completedLearningRounds_(seat,'single'),spellingRounds:completedLearningRounds_(seat,'spelling')};
+ return {stars,candies,owned,dailyRewards:{day:rewardDay_(new Date()),modes:Object.fromEntries(['single','compound','spelling'].map(mode=>[mode,{...dailyRewardUsage_(seat,mode,new Date()),limits:dailyRewardLimits_(mode)}]))},practiceRounds:completedLearningRounds_(seat,'single'),spellingRounds:completedLearningRounds_(seat,'spelling')};
 }
 function saveRace_(d){
  if(!validId_(d.roundId)||!Array.isArray(d.seats)||d.seats.length!==2||d.seats[0]===d.seats[1]||!d.seats.every(id=>getRoster_().some(r=>r.id===id)))throw new Error('invalid_race_players');
@@ -78,7 +105,7 @@ function saveRace_(d){
   if(correct.length>1||(correct.length===1?r.winner!==correct[0]:r.winner!==null||attempts.some(a=>a===null)))throw new Error('invalid_race_winner');
   if(correct.length)scores[correct[0]]++;return {target:r.target,winner:r.winner,attempts,seconds:Math.max(0,Math.min(3600,Number(r.seconds)||0))};
  });
- const lock=LockService.getScriptLock();lock.waitLock(15000);try{const s=ensureSheet_('搶答紀錄',['時間','左方座號','右方座號','左方分數','右方分數','回合編號','關卡','題數','耗時秒','答題明細','左方星星','右方星星','獎勵規則','左方計次','右方計次']);if(findRound_(s,d.roundId))return jsonResponse_({saved:true,duplicate:true});s.appendRow([new Date(),...d.seats,...scores,d.roundId,d.mode,d.total,Math.max(0,Math.min(86400,Number(d.seconds)||0)),JSON.stringify(details),...d.seats.map((seat,i)=>d.total===10?learningAward_(seat,competitionStars_(scores,i),d.mode):0),d.total===10?REWARD_RULE_:'',...attemptCounts.map(()=>d.total===10)]);SpreadsheetApp.flush();return jsonResponse_({saved:true});}finally{lock.releaseLock();}
+ const lock=LockService.getScriptLock();lock.waitLock(15000);try{const s=ensureSheet_('搶答紀錄',['時間','左方座號','右方座號','左方分數','右方分數','回合編號','關卡','題數','耗時秒','答題明細','左方星星','右方星星','獎勵規則','左方計次','右方計次','左方每日獎勵','右方每日獎勵']);if(findRound_(s,d.roundId))return jsonResponse_({saved:true,duplicate:true,awards:savedAwards_(s,d.roundId,true)});const at=new Date(),awards=d.total===10?d.seats.map((seat,i)=>dailyLearningAward_(seat,competitionStars_(scores,i),d.mode,true,at)):[];s.appendRow([at,...d.seats,...scores,d.roundId,d.mode,d.total,Math.max(0,Math.min(86400,Number(d.seconds)||0)),JSON.stringify(details),...d.seats.map((seat,i)=>awards[i]?.stars||0),d.total===10?REWARD_RULE_:'',...attemptCounts.map(()=>d.total===10),...d.seats.map((seat,i)=>awards[i]?JSON.stringify(awards[i]):'')]);SpreadsheetApp.flush();return jsonResponse_({saved:true,awards});}finally{lock.releaseLock();}
 }
 function transactCharacter_(d){
  if(!validId_(d.roundId)||!getRoster_().some(r=>r.id===d.seat))throw new Error('invalid_character_request');
@@ -101,8 +128,8 @@ function setupGameSettings(){
  if(!ss.getSheetByName('已教結合韻')){s=ss.insertSheet('已教結合韻');s.getRange('A1:B2').setValues([['已教結合韻','說明'],['','A2 起，一列填一個完整結合韻，例如 ㄧㄠ。只有填入的結合韻才會出題。']]);s.setColumnWidth(1,180);s.setColumnWidth(2,650);s.setFrozenRows(1);}
  s=ss.getSheetByName('過關紀錄');if(s.getRange('F1:J1').isBlank())s.getRange('F1:J1').setValues([['回合編號','關卡','耗時秒','首次答對題數','答題明細']]);
  const settings=ss.getSheetByName('遊戲設定');settings.getRange('B2').setValue(10);settings.getRange('C2').setValue('固定每回合 10 題；雙人輪流每人 10 題、搶答共 10 題。');settings.getRange('B2').setDataValidation(SpreadsheetApp.newDataValidation().requireFormulaSatisfied('=B2=10').setAllowInvalid(false).build());
- for(const name of ['過關紀錄','測試紀錄']){const sheet=ss.getSheetByName(name);if(sheet)for(const [i,title] of ['學習星星','獎勵規則','輪流比賽明細'].entries()){const cell=sheet.getRange(1,11+i);if(cell.isBlank())cell.setValue(title);}}
- const raceSheet=ss.getSheetByName('搶答紀錄');if(raceSheet)for(const [i,title] of ['獎勵規則','左方計次','右方計次'].entries()){const cell=raceSheet.getRange(1,13+i);if(cell.isBlank())cell.setValue(title);}
+ for(const name of ['過關紀錄','測試紀錄']){const sheet=ss.getSheetByName(name);if(sheet)for(const [i,title] of ['學習星星','獎勵規則','輪流比賽明細','每日獎勵明細'].entries()){const cell=sheet.getRange(1,11+i);if(cell.isBlank())cell.setValue(title);}}
+ const raceSheet=ss.getSheetByName('搶答紀錄');if(raceSheet)for(const [i,title] of ['獎勵規則','左方計次','右方計次','左方每日獎勵','右方每日獎勵'].entries()){const cell=raceSheet.getRange(1,13+i);if(cell.isBlank())cell.setValue(title);}
  const summary=ss.getSheetByName('每日任務總覽');if(summary)summary.getRange('B3').setValue('注音探險島：任一關卡');
  console.log('遊戲設定已完成；原遊戲介面仍相容。');
 }

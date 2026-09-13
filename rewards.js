@@ -1,5 +1,5 @@
-import {CHARACTERS,STARTERS,DRAW_COST,REDEEM_COST,portrait,drawCharacter,redeemCharacter} from './characters.js?v=20260913-auth2';
-import {roundAward,rewardParticipants} from './learning-rewards.js?v=20260913-auth2';
+import {CHARACTERS,STARTERS,DRAW_COST,REDEEM_COST,portrait,drawCharacter,redeemCharacter} from './characters.js?v=20260913-daily1';
+import {cappedRoundAward,rewardParticipants,taipeiDay} from './learning-rewards.js?v=20260913-daily1';
 export function createRewards({demo,getConfig,getSeat,getSeats,jsonGet,post,onChange}){
  const $=id=>document.getElementById(id),cache=new Map();let category='animal',busy=false,activeSeat='',previewPersistent=true,revealed=false;
  function read(key,fallback){try{return JSON.parse(localStorage.getItem(key))??fallback;}catch{return fallback;}}
@@ -64,7 +64,7 @@ export function createRewards({demo,getConfig,getSeat,getSeats,jsonGet,post,onCh
   owned:seat=>wallet(seat).owned,
   avatar(seat){return CHARACTERS.find(c=>c.id===read('zhuyin.avatar.'+seat,STARTERS[0])&&wallet(seat).owned.includes(c.id))||CHARACTERS[0];},
   credit(results){if(!demo)return [];const awards=[];for(const result of results){
-    for(const {seat,baseStars} of rewardParticipants(result)){const w=wallet(seat);if(w.credited.includes(result.roundId))continue;const counter=result.mode==='spelling'?'spellingRounds':'practiceRounds';const award=roundAward(w[counter],baseStars,result.mode);w.stars+=award.stars;w[counter]=award.completedRounds;w.credited.push(result.roundId);store(key(seat),w);awards.push({seat,...award});}
+    for(const {seat,baseStars} of rewardParticipants(result)){const w=wallet(seat);if(w.credited.includes(result.roundId))continue;const counter=result.mode==='spelling'?'spellingRounds':'practiceRounds',day=taipeiDay();if(w.dailyRewards?.day!==day)w.dailyRewards={day,modes:{}};const usage=w.dailyRewards.modes[result.mode]||{perfectStars:0,perseveranceStars:0};const award=cappedRoundAward(w[counter],baseStars,result.mode,usage,result.kind==='race'||!!result.competition);w.dailyRewards.modes[result.mode]={perfectStars:usage.perfectStars+award.perfectStars,perseveranceStars:usage.perseveranceStars+award.perseveranceStars};w.stars+=award.stars;w[counter]=award.completedRounds;w.credited.push(result.roundId);store(key(seat),w);awards.push({seat,...award});}
    }refresh();return awards;
   }
  };

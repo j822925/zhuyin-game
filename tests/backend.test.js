@@ -1,6 +1,6 @@
 import test from 'node:test';import assert from 'node:assert/strict';import vm from 'node:vm';import {readFileSync} from 'node:fs';
 function backend(){const rows=[['時間','座號','挑戰次數','總題數','答錯題數']];let locked=false;
- const record={getLastRow:()=>rows.length,appendRow:r=>rows.push(r),getRange:()=>({createTextFinder:id=>({matchEntireCell:()=>({findNext:()=>rows.some(r=>r[5]===id)?{}:null})})})};
+ const record={getName:()=>'過關紀錄',getLastRow:()=>rows.length,appendRow:r=>rows.push(r),getRange:(row,col,count=1,width=1)=>({getValues:()=>rows.slice(row-1,row-1+count).map(r=>Array.from({length:width},(_,i)=>r[col-1+i]??'')),createTextFinder:id=>({matchEntireCell:()=>({findNext:()=>rows.some(r=>r[5]===id)?{}:null})})})};
  const sheets={'過關紀錄':record,'班級名冊':{getRange:()=>({getValues:()=>[[1,'測試學生',true],[2,'停用學生',false]]})},'今日任務':{getLastRow:()=>6,getRange:()=>({getValues:()=>['ㄅ','ㄆ','ㄇ','ㄉ','ㄧ','ㄠ'].map(x=>[x])})}};
  const ctx=vm.createContext({SpreadsheetApp:{getActiveSpreadsheet:()=>({getSheetByName:n=>sheets[n]}),flush(){}},ContentService:{MimeType:{JSON:'json'},createTextOutput:text=>({text,setMimeType(){return this;}})},Utilities:{getUuid:()=> 'aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee'},LockService:{getScriptLock:()=>({waitLock(){locked=true;},hasLock:()=>locked,releaseLock(){locked=false;}})}});
  vm.runInContext(readFileSync(new URL('../backend/game-api.gs',import.meta.url),'utf8'),ctx);

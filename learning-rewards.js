@@ -1,4 +1,13 @@
-export const REWARD_RULE='ten-rounds-v1';
+export const REWARD_RULE='daily-caps-v2';
+export const dailyLimits=mode=>({perfectStars:mode==='spelling'?12:2,perseveranceStars:mode==='spelling'?5:2});
+export const taipeiDay=(date=new Date())=>new Date(new Date(date).getTime()+8*3600000).toISOString().slice(0,10);
+export function cappedRoundAward(completedRounds,baseStars,mode='single',usage={},competition=false){
+ const award=roundAward(completedRounds,baseStars,mode),limits=dailyLimits(mode);
+ const perfectStars=competition?0:Math.min(baseStars,Math.max(0,limits.perfectStars-(usage.perfectStars||0)));
+ const perseveranceStars=Math.min(award.perseveranceStars,Math.max(0,limits.perseveranceStars-(usage.perseveranceStars||0)));
+ const competitionStars=competition?baseStars:0;
+ return {...award,baseStars:perfectStars+competitionStars,perfectStars,perseveranceStars,competitionStars,stars:perfectStars+competitionStars+perseveranceStars,limits};
+}
 export function competitionStars(scores,index){return scores[0]===scores[1]?1:scores[index]>scores[1-index]?2:1;}
 export function roundAward(completedRounds,baseStars,mode='single'){
  const next=(Number.isInteger(completedRounds)&&completedRounds>=0?completedRounds:0)+1;

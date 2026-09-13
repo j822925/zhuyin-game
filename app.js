@@ -1,10 +1,10 @@
-import {BASE,COMPOUNDS,normalizeConfig,createCatalog,poolFor,optionsFor,shuffle,questionDeck,Round} from './core.js?v=20260913-auth2';
-import {createMultiplayer} from './multiplayer.js?v=20260913-auth2';
-import {createRewards} from './rewards.js?v=20260913-auth2';
-import {portrait} from './characters.js?v=20260913-auth2';
-import {setupChildUI} from './child-ui.js?v=20260913-auth2';
-import {setupCozyUI} from './cozy-ui.js?v=20260913-auth2';
-import {createStudentAuth} from './student-auth.js?v=20260913-auth2';
+import {BASE,COMPOUNDS,normalizeConfig,createCatalog,poolFor,optionsFor,shuffle,questionDeck,Round} from './core.js?v=20260913-daily1';
+import {createMultiplayer} from './multiplayer.js?v=20260913-daily1';
+import {createRewards} from './rewards.js?v=20260913-daily1';
+import {portrait} from './characters.js?v=20260913-daily1';
+import {setupChildUI} from './child-ui.js?v=20260913-daily1';
+import {setupCozyUI} from './cozy-ui.js?v=20260913-daily1';
+import {createStudentAuth} from './student-auth.js?v=20260913-daily1';
 const API='https://script.google.com/macros/s/AKfycbzthN7YNMjzy_kBbKSOXMb0MLeTsy3hjk_ILn0Av7iHKaBEWjxAKOjL06SMfDQan8ac/exec';
 const demo=new URLSearchParams(location.search).get('demo')==='1';
 const names={single:'聲音森林',compound:'彩虹溪谷',spelling:'拼音工坊'};
@@ -112,7 +112,7 @@ function persistResults(results){
  if(demo){$('save-status').textContent='這是老師試玩，沒有傳送學生成績。';$('retry-save').hidden=true;return;}
  latestIds=results.map(x=>x.roundId);pending.push(...results);const stored=write('zhuyin.pending.v2',pending);$('save-status').textContent=stored?'正在確認老師是否收到紀錄…':'此裝置無法暫存，請保持頁面開啟，等待確認傳送。';flushPending();
 }
-async function send(payload){const status=await auth.request(payload);if(status.saved!==true)throw new Error(status.error||'unconfirmed');}
+async function send(payload){const status=await auth.request(payload);if(status.saved!==true)throw new Error(status.error||'unconfirmed');if(latestIds.includes(payload.roundId)&&Array.isArray(status.awards)&&!document.getElementById('award-'+payload.roundId)){const line=document.createElement('div');line.id='award-'+payload.roundId;line.className='round-awards';for(const award of status.awards){const p=document.createElement('p');p.textContent=`🔢 ${award.seat}　⭐ +${award.stars}`;line.append(p);}$('result-details').append(line);}}
 async function flushPending(){if(saving||demo||!config?.verifiedWrites)return;saving=true;$('retry-save').disabled=true;const attempted=new Set();try{for(const payload of [...pending]){attempted.add(payload.roundId);try{await send(payload);pending=pending.filter(x=>x.roundId!==payload.roundId);write('zhuyin.pending.v2',pending);}catch{/* Keep failed rounds and try the others. */}}}finally{saving=false;$('retry-save').disabled=false;const outstanding=pending.some(x=>latestIds.includes(x.roundId)),stored=write('zhuyin.pending.v2',pending);$('retry-save').hidden=!outstanding;$('save-status').textContent=outstanding?(stored?'紀錄已暫存在這台裝置，尚未確認存入後台。':'此裝置無法暫存，請勿關閉頁面。')+'請保持連線並重新傳送。':'老師已收到這次的完整紀錄！';rewards.refresh();if(pending.some(x=>!attempted.has(x.roundId)))flushPending();}}
 document.querySelectorAll('[data-mode]').forEach(b=>b.onclick=()=>start(b.dataset.mode));
 function selectStyle(style){playStyle=style;duo=style!=='solo';for(const id of ['solo','duo','race']){const selected=id===(style==='turn'?'duo':style);$(id).classList.toggle('selected',selected);$(id).setAttribute('aria-pressed',String(selected));}$('partner-label').hidden=!duo;teamUI.setStyle(style);if(config)refreshHome();if(style!=='solo'&&$('partner').value&&!auth.verified($('partner').value))$('partner').onchange();}

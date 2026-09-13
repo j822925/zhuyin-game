@@ -1,6 +1,6 @@
-import {Race} from './race-core.js?v=20260913-auth2';
-import {questionDeck,optionsFor} from './core.js?v=20260913-auth2';
-import {CHARACTERS,STARTERS,portrait} from './characters.js?v=20260913-auth2';
+import {Race} from './race-core.js?v=20260913-daily1';
+import {questionDeck,optionsFor} from './core.js?v=20260913-daily1';
+import {CHARACTERS,STARTERS,portrait} from './characters.js?v=20260913-daily1';
 
 const animals=CHARACTERS.map(c=>[c.emoji,c.name]);
 const keys=[['a','s','d','f'],['h','j','k','l']];

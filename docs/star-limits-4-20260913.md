@@ -8,4 +8,6 @@
 
 Google Apps Script 部署版本 7 於 2026-09-13 14:15 成功發布，沿用原網址和權限。只改每日上限函式的兩個數字，其餘雲端程式（含每日總覽）逐字核對保留；學生密碼程式未修改。
 
-網站版本 20260913-stars4（816f1f6）已推送，啟動 GitHub Pages 發布；等待網站完成檢查。
+網站版本 20260913-stars4 發布完成：bb492ab，GitHub Pages run 34742572840 success。正式老師頁顯示聽音 4／4、拼音 12／5；正式首頁已讀取題庫，聽音可選、拼音仍等老師確認。
+
+正式公開 config 重新讀取成功，single 與舊版相容 compound 回傳 perfectStars 4、perseveranceStars 4，spelling 回傳 12／5。先前直接查詢曾遇 Google 轉址 404，使用新快取識別後成功；未修改任何驗證機制或學生紀錄。

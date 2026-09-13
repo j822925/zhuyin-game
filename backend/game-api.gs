@@ -48,7 +48,7 @@ function characterPool_(category){return CHARACTER_CATALOG_.filter(c=>c.category
 const REWARD_RULE_='daily-caps-v2';
 function isLearningRule_(value){return value===REWARD_RULE_||value==='ten-rounds-v1';}
 function rewardDay_(date){const time=new Date(date).getTime();return Number.isFinite(time)?new Date(time+8*3600000).toISOString().slice(0,10):'';}
-function dailyRewardLimits_(mode){return {perfectStars:mode==='spelling'?12:2,perseveranceStars:mode==='spelling'?5:2};}
+function dailyRewardLimits_(mode){return {perfectStars:mode==='spelling'?12:4,perseveranceStars:mode==='spelling'?5:4};}
 function dailyRewardUsage_(seat,mode,at){
  const day=rewardDay_(at),usage={perfectStars:0,perseveranceStars:0};
  function add(raw,total,base,competition){let award;try{award=JSON.parse(raw);}catch{}if(award&&award.day===day){usage.perfectStars+=Number(award.perfectStars)||0;usage.perseveranceStars+=Number(award.perseveranceStars)||0;}else{if(!competition)usage.perfectStars+=Math.min(total,base);usage.perseveranceStars+=Math.max(0,total-base);}}

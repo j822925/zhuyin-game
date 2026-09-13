@@ -14,6 +14,16 @@ test('搶答分数及獎勵獨立，未搶到不算答錯，不污染練習表',
 test('轉蛋重送不重扣，重複加一糖果；不能透支',()=>{const b=backend();for(let i=0;i<2;i++){const p=practice();p.mode='spelling';b.post(p);}const p={kind:'gacha',roundId:crypto.randomUUID(),seat:'01',category:'animal'};assert.equal(b.post(p).duplicate,true);assert.equal(b.post(p).duplicateRequest,true);const w=b.get({api:'wallet',seat:'01'});assert.equal(w.stars,2);assert.equal(w.candies,1);assert.equal(b.get({api:'draw-status',id:p.roundId}).character,'rabbit');assert.equal(b.post({...p,roundId:crypto.randomUUID()}).saved,false);assert.equal(b.tables['角色交易'].length,2);});
 test('50 糖果兌換指定角色，49 不可換；重送同一交易不重扣',()=>{const b=backend();b.tables['角色交易']=[['時間','座號'],[new Date(),1,'fixture','rabbit',0,'fixture',49,true,'']];const p={kind:'redeem',roundId:crypto.randomUUID(),seat:'01',character:'moon'};assert.equal(b.post(p).saved,false);b.tables['角色交易'][1][6]=50;assert.equal(b.post(p).saved,true);assert.equal(b.post(p).duplicateRequest,true);const w=b.get({api:'wallet',seat:'01'});assert.equal(w.candies,0);assert.ok(w.owned.includes('moon'));});
 const imperfect=(mode='single',seat='01')=>{const p=practice(seat);p.mode=mode;p.mistakes=1;p.results[0]={...p.results[0],firstCorrect:false,errors:1};return p;};
+test('提高為 4／4 後保留舊版當日用量；兩次全對、十二回合領滿',()=>{
+ const b=backend(),first=practice();b.post(first);
+ assert.equal(b.get({api:'wallet',seat:'01'}).dailyRewards.modes.single.perfectStars,2);
+ assert.equal(b.post(first).duplicate,true);
+ assert.equal(b.post(practice()).awards[0].perfectStars,2);
+ for(let i=2;i<12;i++)b.post(imperfect());
+ let w=b.get({api:'wallet',seat:'01'});assert.equal(w.stars,8);assert.equal(w.dailyRewards.modes.single.perfectStars,4);assert.equal(w.dailyRewards.modes.single.perseveranceStars,4);
+ for(let i=0;i<3;i++)b.post(practice());assert.equal(b.get({api:'wallet',seat:'01'}).stars,8);
+ const limits=b.get({api:'config'}).rewardLimits;assert.equal(limits.single.perfectStars,4);assert.equal(limits.single.perseveranceStars,4);assert.equal(limits.spelling.perfectStars,12);assert.equal(limits.spelling.perseveranceStars,5);
+});
 test('答錯回合 0 星，第三回合 1 星；重送不增加毅力次數',()=>{
  const b=backend();for(let i=0;i<3;i++){const p=imperfect();assert.equal(b.post(p).saved,true);assert.equal(b.post(p).duplicate,true);}
  const w=b.get({api:'wallet',seat:'01'});assert.equal(w.stars,1);assert.equal(w.practiceRounds,3);
@@ -36,11 +46,11 @@ test('舊版短回合仍能補存但不領新獎勵；新設定固定 10 題',()
  const b=backend(),p=practice();p.total=5;p.results=p.results.slice(0,5);assert.equal(b.post(p).saved,true);
  assert.equal(b.get({api:'wallet',seat:'01'}).stars,0);assert.equal(b.get({api:'wallet',seat:'01'}).practiceRounds,0);assert.equal(b.get({api:'config'}).questions,10);
 });
-test('一般關卡每日全對 2、毅力 2，超限仍存成績且不因花星重領',()=>{
+test('一般關卡每日全對 4、毅力 4，超限仍存成績且不因花星重領',()=>{
  const b=backend();for(let i=0;i<18;i++)assert.equal(b.post(practice()).saved,true);
- let w=b.get({api:'wallet',seat:'01'});assert.equal(w.stars,4);assert.equal(w.practiceRounds,18);assert.equal(b.tables['過關紀錄'].length,19);
- assert.equal(w.dailyRewards.modes.single.perfectStars,2);assert.equal(w.dailyRewards.modes.single.perseveranceStars,2);
- b.tables['角色交易']=[['時間','座號'],[new Date(),'01','fixture','rabbit',-4,'fixture',0,false,'']];b.post(practice());assert.equal(b.get({api:'wallet',seat:'01'}).stars,0);
+ let w=b.get({api:'wallet',seat:'01'});assert.equal(w.stars,8);assert.equal(w.practiceRounds,18);assert.equal(b.tables['過關紀錄'].length,19);
+ assert.equal(w.dailyRewards.modes.single.perfectStars,4);assert.equal(w.dailyRewards.modes.single.perseveranceStars,4);
+ b.tables['角色交易']=[['時間','座號'],[new Date(),'01','fixture','rabbit',-8,'fixture',0,false,'']];b.post(practice());assert.equal(b.get({api:'wallet',seat:'01'}).stars,0);
 });
 test('拼音每日全對 12、毅力 5；學生和各關卡額度互不影響',()=>{
  const b=backend();for(let i=0;i<20;i++){const p=practice();p.mode='spelling';b.post(p);}assert.equal(b.get({api:'wallet',seat:'01'}).stars,17);
@@ -48,15 +58,15 @@ test('拼音每日全對 12、毅力 5；學生和各關卡額度互不影響',(
  const w=b.get({api:'wallet',seat:'01'});assert.equal(w.dailyRewards.modes.single.perfectStars,2);assert.equal(w.dailyRewards.modes.compound.perfectStars,2);assert.equal(b.get({api:'wallet',seat:'15'}).stars,2);
 });
 test('台灣午夜重置額度，毅力回合進度保留；跨日重送不再領',()=>{
- const b=backend(),p=practice();const first=b.post(p);b.advance(14*3600000-1);assert.equal(b.post(practice()).awards[0].perfectStars,0);
- b.advance(1);assert.equal(b.post(p).duplicate,true);const out=b.post(practice());assert.equal(out.awards[0].day,'2026-09-14');assert.equal(out.awards[0].perfectStars,2);assert.equal(out.awards[0].perseveranceStars,1);assert.equal(b.get({api:'wallet',seat:'01'}).stars,5);assert.equal(b.post(p).awards[0].day,first.awards[0].day);
+ const b=backend(),p=practice();const first=b.post(p);b.advance(14*3600000-1);assert.equal(b.post(practice()).awards[0].perfectStars,2);
+ b.advance(1);assert.equal(b.post(p).duplicate,true);const out=b.post(practice());assert.equal(out.awards[0].day,'2026-09-14');assert.equal(out.awards[0].perfectStars,2);assert.equal(out.awards[0].perseveranceStars,1);assert.equal(b.get({api:'wallet',seat:'01'}).stars,7);assert.equal(b.post(p).awards[0].day,first.awards[0].day);
 });
 test('上線前同日舊星星計入額度而不追扣',()=>{
  const b=backend();b.tables['過關紀錄'].push([new Date('2026-09-13T09:00:00+08:00'),'01 學生甲',1,10,0,'old-reward-round-001','single',1,10,'[]',3,'ten-rounds-v1','']);
- for(let i=0;i<6;i++)b.post(practice());assert.equal(b.get({api:'wallet',seat:'01'}).stars,4);
+ for(let i=0;i<6;i++)b.post(practice());assert.equal(b.get({api:'wallet',seat:'01'}).stars,7);
 });
 test('搶答勝負獎勵不變，但每日毅力封頂且雙方重送不重領',()=>{
  const b=backend();let p;
  for(let i=0;i<12;i++){p={kind:'race',roundId:crypto.randomUUID(),seats:['01','15'],mode:'single',total:10,results:Array.from({length:10},()=>({target:'ㄅ',winner:0,attempts:[{value:'ㄅ',correct:true},null]}))};assert.equal(b.post(p).saved,true);assert.equal(b.post(p).duplicate,true);}
- assert.equal(b.get({api:'wallet',seat:'01'}).stars,26);assert.equal(b.get({api:'wallet',seat:'15'}).stars,14);assert.equal(b.post(p).awards.length,2);assert.equal(b.get({api:'wallet',seat:'01'}).dailyRewards.modes.single.perseveranceStars,2);
+ assert.equal(b.get({api:'wallet',seat:'01'}).stars,28);assert.equal(b.get({api:'wallet',seat:'15'}).stars,16);assert.equal(b.post(p).awards.length,2);assert.equal(b.get({api:'wallet',seat:'01'}).dailyRewards.modes.single.perseveranceStars,4);
 });

@@ -1,5 +1,5 @@
 export const REWARD_RULE='daily-caps-v2';
-export const dailyLimits=mode=>({perfectStars:mode==='spelling'?12:2,perseveranceStars:mode==='spelling'?5:2});
+export const dailyLimits=mode=>({perfectStars:mode==='spelling'?12:4,perseveranceStars:mode==='spelling'?5:4});
 export const taipeiDay=(date=new Date())=>new Date(new Date(date).getTime()+8*3600000).toISOString().slice(0,10);
 export function cappedRoundAward(completedRounds,baseStars,mode='single',usage={},competition=false){
  const award=roundAward(completedRounds,baseStars,mode),limits=dailyLimits(mode);

@@ -1,0 +1,209 @@
+{
+  "mode": "built-in image_gen",
+  "common": "Use case: stylized-concept. Asset type: one original full-body collectible character PNG for a child's cozy island game. Style/medium: premium cute soft 3D clay-and-fabric render, handcrafted plush figurine quality, rounded exaggerated large head about 55% of body height, tiny plump body, large warm glossy chocolate eyes, peach blush, tiny nose and gentle smile, tactile knitted seams and soft linen details, exquisite but simple readable silhouette. Wholesome pastoral life-simulation mood inspired by Animal Crossing, but entirely original character identity and clothes, never copy an existing Nintendo character. Composition: only ONE centered character, near-frontal gentle three-quarter view, entire body, ears, wings, hat and feet visible with comfortable 10% padding on EVERY edge. Consistent warm diffuse daylight and subtle ambient occlusion, no harsh contrast. Genuinely transparent alpha background, small soft contact shadow only, no environment, no text, no labels, no watermark, no checkerboard. Same coherent art direction as a cream bunny in mint knitted daisy pinafore. Render detailed polished 1024px square game asset. Subject: ",
+  "rabbit": "Use case: stylized-concept. Asset type: production game character portrait, one isolated original character. Create a very cute original cream-white bunny villager named Cotton, full body, oversized rounded head and tiny plump body, long rounded ears with blush pink inside, deep chocolate glossy oval eyes with subtle highlights, tiny smile, soft peach cheeks. Wears a mint knitted pinafore over a cream short-sleeve blouse, daisy embroidery, tiny caramel boots, one small peach flower tucked beside an ear. Gentle welcoming pose holding a little seedling. Art direction: cozy pastoral life-simulation game, soft polished 3D clay and fabric render, handcrafted collectible figurine, charming sophisticated illustration with tactile knitted seams, rounded volumes, warm diffuse daylight and subtle ambient occlusion. Inspired by the wholesome cozy mood of Animal Crossing but an entirely original design, do not depict or imitate any specific existing Nintendo character. Composition: a single centered full-body character at slightly elevated front three-quarter view, character fills 82% of square canvas, all ears/feet included, ample transparent margin, small soft contact shadow only. Background: genuinely transparent alpha, no white square or drawn checkerboard, no scene, no text, no logo, no watermark. This is the first of a cohesive set of 20 collectible characters for a children's phonetic learning game. Produce one polished PNG asset.",
+  "characters": [
+    [
+      "fox",
+      "A cheerful apricot orange FOX with huge fluffy cream tipped tail, soft triangular ears, a teal linen gardener waistcoat over a striped cream shirt, tiny cinnamon shorts, holding one acorn satchel. Friendly adventurous expression."
+    ],
+    [
+      "panda",
+      "A plump bamboo PANDA with rounded black ears and asymmetric playful eyebrow, sage corduroy overalls and pale yellow scarf, a tiny woven bamboo basket tucked under one arm, barefoot round paws."
+    ],
+    [
+      "cat",
+      "A caramel and milk tabby CAT, soft rounded triangular ears and curled stripe tail, dusty rose cardigan with wooden toggles and oatmeal bloomers, a small heart-shaped cookie held in both paws, shy smile."
+    ],
+    [
+      "bear",
+      "A honey-brown BEAR with small round ears, a butter-yellow quilted vest over blue gingham shirt and tiny moss boots, carrying a little jam jar with a gingham cloth lid, rosy cheeks."
+    ],
+    [
+      "koala",
+      "A cloud-gray KOALA with fluffy oversized round ears, large soft dark nose, sky-blue knitted hoodie with tiny cloud embroidery and cream trousers, holding a small eucalyptus sprig, sleepy kind expression."
+    ],
+    [
+      "frog",
+      "A mint-green FROG with big high-set gentle round eyes, light cream belly and rosy cheeks, a lemon raincoat and little soft orange rainboots, a waterlily leaf hat tilted adorably, carrying a tiny watering can."
+    ],
+    [
+      "penguin",
+      "A plump navy and cream PENGUIN with round head and short flippers, peach knit scarf and light blue fisherman sweater, tiny orange feet, holding a little shell with both flippers, bashful smile."
+    ],
+    [
+      "lion",
+      "A tiny LION with a warm cinnamon fluffy scalloped mane and creamy gold face, oversized kind chocolate eyes, sage dungarees with sunflower embroidery, tiny brown boots, holding a sunflower, no sharp teeth."
+    ],
+    [
+      "owl",
+      "A round lavender-taupe OWL with fluffy ear tufts and tiny folded wings, soft cream heart-shaped facial disk, round amber-rimmed spectacles, cozy burgundy knit cape and tiny canvas book satchel, gentle scholar expression."
+    ],
+    [
+      "rose",
+      "A childlike ROSE BLOSSOM FAIRY, not human-proportioned: huge round face and tiny body, rose-pink short wavy bob, peach flower-bud hat, dress made of layered velvety pink and cream petals over sage leggings, translucent rounded butterfly wings with pink veins, tiny flower wand, friendly glossy chocolate eyes, little blush cheeks."
+    ],
+    [
+      "moon",
+      "A childlike MOON FAIRY with oversized round head and tiny body, lilac curled bob and a cream crescent-shaped beret, midnight-periwinkle velvet tunic dotted with tiny embroidered moons, ivory bloomers and lavender slippers, translucent crescent-petal wings with pearl edges, holding a little glowing moon lantern, sleepy gentle smile."
+    ],
+    [
+      "sea",
+      "A childlike SEA FOAM FAIRY with oversized round head and tiny body, turquoise fluffy short hair, pearly shell-shaped cap, seafoam layered scallop dress and cream knitted collar, opalescent rounded fin-like wings, holding one tiny conch shell, little lavender boots, cheerful eyes."
+    ],
+    [
+      "forest",
+      "A childlike FOREST FAIRY with oversized round head and tiny body, chestnut wavy hair and an acorn cap with a sprouting leaf, moss-green layered leaf cloak over cream overalls, translucent veined leaf wings, little seed pouch and soft tan boots, caring smile, not a generic princess."
+    ],
+    [
+      "sun",
+      "A childlike SUNRISE FAIRY with oversized round head and tiny body, honey-gold fluffy curls and a small sunflower bonnet, warm apricot quilted tunic and cream leggings, rounded sun-petal amber wings, holding a small sun-shaped lantern, cinnamon shoes and happy crescent eyes."
+    ],
+    [
+      "snow",
+      "A childlike SNOW CRYSTAL FAIRY with oversized round head and tiny body, ice-blue short bob and a knitted white pompom beret, powder-blue cape with soft faux-fur edging and embroidered snowflakes, rounded snow-crystal translucent wings, cream mittens holding a tiny snowflake wand, rosy cheeks and tiny fuzzy boots."
+    ],
+    [
+      "rainbow",
+      "A childlike RAINBOW FAIRY with oversized round head and tiny body, soft peach hair in two small cloud-like buns, pastel rainbow knitted jumper and lilac bloomers, translucent butterfly wings in softly blended peach mint and lavender, cloud-shaped hatpin, holding a tiny rainbow arc toy, warm happy eyes."
+    ],
+    [
+      "berry",
+      "A childlike BERRY FAIRY with oversized round head and tiny body, strawberry-red short bob, soft strawberry bonnet with green leaf crown, creamy pink tunic embroidered with strawberry seeds over pale mint leggings, small rounded strawberry-leaf wings, holding a tiny berry basket, brown soft boots, joyful blush."
+    ],
+    [
+      "star",
+      "A childlike STARLIGHT FAIRY with oversized round head and tiny body, deep periwinkle fluffy hair, a tilted plush gold star hatpin, navy and cream knitted astrologer cape decorated with stitched stars, translucent rounded star-shaped wings, a little gold star wand, pale blue tiny boots, gentle curious eyes."
+    ],
+    [
+      "lavender",
+      "A childlike LAVENDER FAIRY with oversized round head and tiny body, mauve braided crown hairstyle under a lilac flower bonnet, lavender petal coat with cream lace collar and sage bloomers, translucent long rounded lavender-petal wings, holding a small lavender bouquet tied with cream ribbon, soft plum boots, gentle smile."
+    ]
+  ],
+  "facialEdits": [
+    {
+      "id": "moon",
+      "prompt": "Use case: precise-object-edit. Image 1 is the edit target, an original full-body fairy game sprite. Change ONLY the face expression, eyelids, eyebrows and mouth: Make both eyes half-lidded and relaxed with a dreamy sleepy sideways gaze. Mouth a tiny level neutral dash, absolutely no smile; eyebrows gently flat. A lovable unbothered night guardian. Preserve exactly the character identity, head proportions, hairstyle, costume, hat, wings, props, body pose, plush felt and knitted texture, colors, soft studio lighting and framing of the reference. Keep whole character fully visible including feet and accessories. Genuine transparent alpha background, no checkerboard painted into image, no text, no extra objects. This is a refined game asset for young children."
+    },
+    {
+      "id": "snow",
+      "prompt": "Use case: precise-object-edit. Image 1 is the edit target, an original full-body fairy game sprite. Change ONLY the face expression, eyelids, eyebrows and mouth: Calm, reserved, quietly observant expression. Small level straight mouth with neither upturned nor downturned corners, no smile. Gentle level eyebrows and peaceful open eyes. Cute and emotionally restrained, not sad. Preserve exactly the character identity, head proportions, hairstyle, costume, hat, wings, props, body pose, plush felt and knitted texture, colors, soft studio lighting and framing of the reference. Keep whole character fully visible including feet and accessories. Genuine transparent alpha background, no checkerboard painted into image, no text, no extra objects. This is a refined game asset for young children."
+    },
+    {
+      "id": "forest",
+      "prompt": "Use case: precise-object-edit. Image 1 is the edit target, an original full-body fairy game sprite. Change ONLY the face expression, eyelids, eyebrows and mouth: Attentive, determined little guardian. Gently angled focused eyebrows, direct watchful gaze, tiny firmly closed straight mouth, no smile. Brave serious but friendly and non-threatening, not angry. Preserve exactly the character identity, head proportions, hairstyle, costume, hat, wings, props, body pose, plush felt and knitted texture, colors, soft studio lighting and framing of the reference. Keep whole character fully visible including feet and accessories. Genuine transparent alpha background, no checkerboard painted into image, no text, no extra objects. This is a refined game asset for young children."
+    },
+    {
+      "id": "star",
+      "prompt": "Use case: precise-object-edit. Image 1 is the edit target, an original full-body fairy game sprite. Change ONLY the face expression, eyelids, eyebrows and mouth: Curious surprised expression: eyes wide open, eyebrows raised, tiny round O-shaped mouth instead of a smile. Wonderstruck by a newly discovered star. Cute, not frightened. Preserve exactly the character identity, head proportions, hairstyle, costume, hat, wings, props, body pose, plush felt and knitted texture, colors, soft studio lighting and framing of the reference. Keep whole character fully visible including feet and accessories. Genuine transparent alpha background, no checkerboard painted into image, no text, no extra objects. This is a refined game asset for young children."
+    },
+    {
+      "id": "berry",
+      "prompt": "Use case: precise-object-edit. Image 1 is the edit target, an original full-body fairy game sprite. Change ONLY the face expression, eyelids, eyebrows and mouth: Distinct mischievous confident personality: one eyebrow raised, asymmetrical tiny closed smirk on one side only, one eye slightly more half-lidded. A playful clever berry sprite, never malicious. Not the same symmetric happy smile. Preserve exactly the character identity, head proportions, hairstyle, costume, hat, wings, props, body pose, plush felt and knitted texture, colors, soft studio lighting and framing of the reference. Keep whole character fully visible including feet and accessories. Genuine transparent alpha background, no checkerboard painted into image, no text, no extra objects. This is a refined game asset for young children."
+    }
+  ],
+  "alphaExtraction": "Use case: background-extraction. Remove the entire gray-and-white checkerboard background from the supplied fairy image. Deliver an actual RGBA PNG with completely transparent alpha pixels outside the fairy silhouette, NOT a rendered checkerboard and NOT an opaque background. Keep fairy pixels, distinctive facial expression, props, wings, clothing, size and pose unchanged. Single isolated full-body game sprite with genuine transparent background.",
+  "meadow": "Use case: stylized-concept. Asset type: wide illustrated hero background for a preschool phonetic learning game. Create an original cozy miniature meadow village, no characters. Polished tactile soft 3D storybook/clay rendering with warm diffuse morning light, gentle plush moss grass, pale turquoise winding stream and a little rounded timber footbridge, small daisy patches and pastel flowers, round pear-shaped trees, a tiny cream cottage with mint roof on the right, a small woodland treehouse toward the left, stepping stone path through the center. Inspired by the relaxed pastoral atmosphere of cozy island life-simulation games, entirely original setting, no existing Animal Crossing buildings or logos. Horizontal landscape 3:1 aspect ratio. Composition spacious and calm, low camera slightly elevated isometric-ish view, softly detailed scenery at edges, gentle uncluttered grassy middle for an overlaid character and UI. Palette sage green, pale aqua, buttery cream, soft peach, light honey wood. Rounded forms, soft woolly grassy materials, linen-like cottage roof. No text, no letters, no character faces, no interface buttons, no watermark. Seamlessly pleasing as a wide website banner, flat soft sky pale mint at top.",
+  "selected": [
+    {
+      "id": "rabbit",
+      "source": "C:\\Users\\j8229\\.codex\\generated_images\\01a09373-3ab5-7531-9282-e839017e4f4a\\exec-2711bfc8-6b31-4255-ba0c-809804514ce0.png",
+      "projectPath": "assets/characters/cozy-v1/rabbit.png"
+    },
+    {
+      "id": "fox",
+      "source": "C:\\Users\\j8229\\.codex\\generated_images\\01a09373-3ab5-7531-9282-e839017e4f4a\\exec-2f3d9139-0e73-431d-ac6e-718c717972fc.png",
+      "projectPath": "assets/characters/cozy-v1/fox.png"
+    },
+    {
+      "id": "panda",
+      "source": "C:\\Users\\j8229\\.codex\\generated_images\\01a09373-3ab5-7531-9282-e839017e4f4a\\exec-45488d82-c4d0-4b6f-ac81-aeb1001acbc0.png",
+      "projectPath": "assets/characters/cozy-v1/panda.png"
+    },
+    {
+      "id": "cat",
+      "source": "C:\\Users\\j8229\\.codex\\generated_images\\01a09373-3ab5-7531-9282-e839017e4f4a\\exec-87c9dba5-81d0-42ad-b0e8-9eb66bf4e113.png",
+      "projectPath": "assets/characters/cozy-v1/cat.png"
+    },
+    {
+      "id": "bear",
+      "source": "C:\\Users\\j8229\\.codex\\generated_images\\01a09373-3ab5-7531-9282-e839017e4f4a\\exec-3f0509f4-887a-4ec0-ad57-027059598246.png",
+      "projectPath": "assets/characters/cozy-v1/bear.png"
+    },
+    {
+      "id": "koala",
+      "source": "C:\\Users\\j8229\\.codex\\generated_images\\01a09373-3ab5-7531-9282-e839017e4f4a\\exec-5eee002c-3126-491c-ae15-4c330492f726.png",
+      "projectPath": "assets/characters/cozy-v1/koala.png"
+    },
+    {
+      "id": "frog",
+      "source": "C:\\Users\\j8229\\.codex\\generated_images\\01a09373-3ab5-7531-9282-e839017e4f4a\\exec-30ad2e2b-324d-4f12-aa52-7af3ff7f72a9.png",
+      "projectPath": "assets/characters/cozy-v1/frog.png"
+    },
+    {
+      "id": "penguin",
+      "source": "C:\\Users\\j8229\\.codex\\generated_images\\01a09373-3ab5-7531-9282-e839017e4f4a\\exec-7ed43325-d020-4bb2-97fc-b259d0bca5b4.png",
+      "projectPath": "assets/characters/cozy-v1/penguin.png"
+    },
+    {
+      "id": "lion",
+      "source": "C:\\Users\\j8229\\.codex\\generated_images\\01a09373-3ab5-7531-9282-e839017e4f4a\\exec-8de7ac95-68a5-44df-87ca-8e44ada9a4c4.png",
+      "projectPath": "assets/characters/cozy-v1/lion.png"
+    },
+    {
+      "id": "owl",
+      "source": "C:\\Users\\j8229\\.codex\\generated_images\\01a09373-3ab5-7531-9282-e839017e4f4a\\exec-8f68d9b2-0078-4a3b-a4d5-094b26994d8d.png",
+      "projectPath": "assets/characters/cozy-v1/owl.png"
+    },
+    {
+      "id": "rose",
+      "source": "C:\\Users\\j8229\\.codex\\generated_images\\01a09373-3ab5-7531-9282-e839017e4f4a\\exec-e6a4fba2-9cee-485e-ae35-e83a1842c05c.png",
+      "projectPath": "assets/characters/cozy-v1/rose.png"
+    },
+    {
+      "id": "moon",
+      "source": "C:\\Users\\j8229\\.codex\\generated_images\\01a09373-3ab5-7531-9282-e839017e4f4a\\exec-45f4813a-f329-4ec0-afb2-0e0dc47fb3b8.png",
+      "projectPath": "assets/characters/cozy-v1/moon.png"
+    },
+    {
+      "id": "sea",
+      "source": "C:\\Users\\j8229\\.codex\\generated_images\\01a09373-3ab5-7531-9282-e839017e4f4a\\exec-9328c828-86a0-4c3d-93ef-da258ca7599b.png",
+      "projectPath": "assets/characters/cozy-v1/sea.png"
+    },
+    {
+      "id": "forest",
+      "source": "C:\\Users\\j8229\\.codex\\generated_images\\01a09373-3ab5-7531-9282-e839017e4f4a\\exec-442574b0-2558-4bb3-9039-6ff65e2c7ecc.png",
+      "projectPath": "assets/characters/cozy-v1/forest.png"
+    },
+    {
+      "id": "sun",
+      "source": "C:\\Users\\j8229\\.codex\\generated_images\\01a09373-3ab5-7531-9282-e839017e4f4a\\exec-f40c7f13-678e-4850-9fb8-150a6aedaf25.png",
+      "projectPath": "assets/characters/cozy-v1/sun.png"
+    },
+    {
+      "id": "snow",
+      "source": "C:\\Users\\j8229\\.codex\\generated_images\\01a09373-3ab5-7531-9282-e839017e4f4a\\exec-4c3d42be-f165-4b07-9eba-fa5337897137.png",
+      "projectPath": "assets/characters/cozy-v1/snow.png"
+    },
+    {
+      "id": "rainbow",
+      "source": "C:\\Users\\j8229\\.codex\\generated_images\\01a09373-3ab5-7531-9282-e839017e4f4a\\exec-fdc4d8f9-90d2-45dd-93bb-161752aed369.png",
+      "projectPath": "assets/characters/cozy-v1/rainbow.png"
+    },
+    {
+      "id": "berry",
+      "source": "C:\\Users\\j8229\\.codex\\generated_images\\01a09373-3ab5-7531-9282-e839017e4f4a\\exec-bf3f5729-c3fd-4d7c-aa76-7650268a0509.png",
+      "projectPath": "assets/characters/cozy-v1/berry.png"
+    },
+    {
+      "id": "star",
+      "source": "C:\\Users\\j8229\\.codex\\generated_images\\01a09373-3ab5-7531-9282-e839017e4f4a\\exec-aa4d9af2-4cb4-4d20-bb2b-c99df76d9883.png",
+      "projectPath": "assets/characters/cozy-v1/star.png"
+    },
+    {
+      "id": "lavender",
+      "source": "C:\\Users\\j8229\\.codex\\generated_images\\01a09373-3ab5-7531-9282-e839017e4f4a\\exec-d14e6b38-75b0-49ef-a424-ece3fdfb83d5.png",
+      "projectPath": "assets/characters/cozy-v1/lavender.png"
+    }
+  ]
+}

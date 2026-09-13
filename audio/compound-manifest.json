@@ -1,0 +1,372 @@
+[
+  {
+    "symbol": "ㄧㄚ",
+    "file": "audio/compound/c01.mp3",
+    "sourceSeconds": 8.085,
+    "start": 2.8,
+    "end": 4.62,
+    "speechGroups": [
+      [
+        2.9,
+        4.46
+      ],
+      [
+        5.46,
+        7.02
+      ]
+    ]
+  },
+  {
+    "symbol": "ㄧㄛ",
+    "file": "audio/compound/c02.mp3",
+    "sourceSeconds": 8.043,
+    "start": 2.66,
+    "end": 4.0,
+    "speechGroups": [
+      [
+        2.76,
+        3.84
+      ],
+      [
+        5.34,
+        6.4
+      ]
+    ]
+  },
+  {
+    "symbol": "ㄧㄝ",
+    "file": "audio/compound/c03.mp3",
+    "sourceSeconds": 8.085,
+    "start": 2.88,
+    "end": 4.26,
+    "speechGroups": [
+      [
+        2.98,
+        4.1
+      ],
+      [
+        5.56,
+        6.66
+      ]
+    ]
+  },
+  {
+    "symbol": "ㄧㄞ",
+    "file": "audio/compound/c04.mp3",
+    "sourceSeconds": 8.043,
+    "start": 2.94,
+    "end": 4.52,
+    "speechGroups": [
+      [
+        3.04,
+        4.36
+      ],
+      [
+        5.6,
+        6.94
+      ]
+    ]
+  },
+  {
+    "symbol": "ㄧㄠ",
+    "file": "audio/compound/c05.mp3",
+    "sourceSeconds": 8.043,
+    "start": 2.92,
+    "end": 4.38,
+    "speechGroups": [
+      [
+        3.02,
+        4.22
+      ],
+      [
+        5.58,
+        6.8
+      ]
+    ]
+  },
+  {
+    "symbol": "ㄧㄡ",
+    "file": "audio/compound/c06.mp3",
+    "sourceSeconds": 8.043,
+    "start": 2.94,
+    "end": 4.74,
+    "speechGroups": [
+      [
+        3.04,
+        4.58
+      ],
+      [
+        5.6,
+        7.14
+      ]
+    ]
+  },
+  {
+    "symbol": "ㄧㄢ",
+    "file": "audio/compound/c07.mp3",
+    "sourceSeconds": 8.043,
+    "start": 2.98,
+    "end": 4.68,
+    "speechGroups": [
+      [
+        3.08,
+        4.52
+      ],
+      [
+        6.26,
+        7.66
+      ]
+    ]
+  },
+  {
+    "symbol": "ㄧㄣ",
+    "file": "audio/compound/c08.mp3",
+    "sourceSeconds": 8.043,
+    "start": 2.84,
+    "end": 4.54,
+    "speechGroups": [
+      [
+        2.94,
+        4.38
+      ],
+      [
+        6.1,
+        7.56
+      ]
+    ]
+  },
+  {
+    "symbol": "ㄧㄤ",
+    "file": "audio/compound/c09.mp3",
+    "sourceSeconds": 8.043,
+    "start": 2.72,
+    "end": 4.5,
+    "speechGroups": [
+      [
+        2.82,
+        4.34
+      ],
+      [
+        5.42,
+        6.94
+      ]
+    ]
+  },
+  {
+    "symbol": "ㄧㄥ",
+    "file": "audio/compound/c10.mp3",
+    "sourceSeconds": 8.043,
+    "start": 3.04,
+    "end": 5.72,
+    "speechGroups": [
+      [
+        3.14,
+        5.56
+      ],
+      [
+        6.3,
+        8.06
+      ]
+    ]
+  },
+  {
+    "symbol": "ㄨㄚ",
+    "file": "audio/compound/c11.mp3",
+    "sourceSeconds": 8.043,
+    "start": 2.82,
+    "end": 4.52,
+    "speechGroups": [
+      [
+        2.92,
+        4.36
+      ],
+      [
+        5.52,
+        6.96
+      ]
+    ]
+  },
+  {
+    "symbol": "ㄨㄛ",
+    "file": "audio/compound/c12.mp3",
+    "sourceSeconds": 8.043,
+    "start": 2.82,
+    "end": 4.6,
+    "speechGroups": [
+      [
+        2.92,
+        4.44
+      ],
+      [
+        5.52,
+        7.04
+      ]
+    ]
+  },
+  {
+    "symbol": "ㄨㄞ",
+    "file": "audio/compound/c13.mp3",
+    "sourceSeconds": 8.043,
+    "start": 2.82,
+    "end": 4.52,
+    "speechGroups": [
+      [
+        2.92,
+        4.36
+      ],
+      [
+        5.52,
+        6.96
+      ]
+    ]
+  },
+  {
+    "symbol": "ㄨㄟ",
+    "file": "audio/compound/c14.mp3",
+    "sourceSeconds": 8.043,
+    "start": 2.66,
+    "end": 4.26,
+    "speechGroups": [
+      [
+        2.76,
+        4.1
+      ],
+      [
+        5.36,
+        6.7
+      ]
+    ]
+  },
+  {
+    "symbol": "ㄨㄢ",
+    "file": "audio/compound/c15.mp3",
+    "sourceSeconds": 8.043,
+    "start": 2.92,
+    "end": 4.56,
+    "speechGroups": [
+      [
+        3.02,
+        4.4
+      ],
+      [
+        5.62,
+        7.0
+      ]
+    ]
+  },
+  {
+    "symbol": "ㄨㄣ",
+    "file": "audio/compound/c16.mp3",
+    "sourceSeconds": 8.043,
+    "start": 2.64,
+    "end": 4.36,
+    "speechGroups": [
+      [
+        2.74,
+        4.2
+      ],
+      [
+        5.28,
+        6.8
+      ]
+    ]
+  },
+  {
+    "symbol": "ㄨㄤ",
+    "file": "audio/compound/c17.mp3",
+    "sourceSeconds": 8.043,
+    "start": 2.92,
+    "end": 4.74,
+    "speechGroups": [
+      [
+        3.02,
+        4.58
+      ],
+      [
+        5.58,
+        7.14
+      ]
+    ]
+  },
+  {
+    "symbol": "ㄨㄥ",
+    "file": "audio/compound/c18.mp3",
+    "sourceSeconds": 8.043,
+    "start": 2.86,
+    "end": 4.72,
+    "speechGroups": [
+      [
+        2.96,
+        4.56
+      ],
+      [
+        5.52,
+        7.14
+      ]
+    ]
+  },
+  {
+    "symbol": "ㄩㄝ",
+    "file": "audio/compound/c19.mp3",
+    "sourceSeconds": 8.043,
+    "start": 2.82,
+    "end": 4.72,
+    "speechGroups": [
+      [
+        2.92,
+        4.56
+      ],
+      [
+        5.5,
+        7.12
+      ]
+    ]
+  },
+  {
+    "symbol": "ㄩㄢ",
+    "file": "audio/compound/c20.mp3",
+    "sourceSeconds": 8.043,
+    "start": 3.0,
+    "end": 5.386,
+    "speechGroups": [
+      [
+        3.1,
+        8.06
+      ]
+    ]
+  },
+  {
+    "symbol": "ㄩㄣ",
+    "file": "audio/compound/c21.mp3",
+    "sourceSeconds": 8.939,
+    "start": 2.92,
+    "end": 5.28,
+    "speechGroups": [
+      [
+        3.02,
+        5.12
+      ],
+      [
+        6.2,
+        8.28
+      ]
+    ]
+  },
+  {
+    "symbol": "ㄩㄥ",
+    "file": "audio/compound/c22.mp3",
+    "sourceSeconds": 8.043,
+    "start": 2.78,
+    "end": 4.7,
+    "speechGroups": [
+      [
+        2.88,
+        4.54
+      ],
+      [
+        6.06,
+        7.7
+      ]
+    ]
+  }
+]

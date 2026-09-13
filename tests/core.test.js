@@ -1,0 +1,13 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {readFileSync,existsSync} from 'node:fs';
+import {BASE,COMPOUNDS,normalizeConfig,createCatalog,poolFor,optionsFor,questionDeck,Round} from '../core.js';
+const catalog=createCatalog(JSON.parse(readFileSync(new URL('../data/syllables.json',import.meta.url))));
+const week1=normalizeConfig({version:2,symbols:['ㄅ','ㄆ','ㄇ','ㄉ','一','ㄠ','ㄅ','bad'],seats:['1','2'],questions:10});
+test('第一週六音只產生老師指定的八種拼音',()=>{assert.equal(week1.symbols.length,6);assert.deepEqual(poolFor('spelling',week1,catalog).map(x=>x.word),['包','拋','貓','刀','逼','批','咪','低']);});
+test('不能由個別韻符自動解鎖未教結合韻',()=>{assert.equal(poolFor('compound',week1,catalog).length,0);assert.ok(!poolFor('spelling',week1,catalog).some(x=>x.final==='ㄧㄠ'));const enabled={...week1,compounds:['ㄧㄠ']};assert.ok(poolFor('spelling',enabled,catalog).some(x=>x.word==='標'));});
+test('小題庫不補未教的干擾選項，且不產生重複',()=>{const pool=poolFor('single',week1,catalog);for(let n=1;n<=6;n++){const subset=pool.slice(0,n);for(let k=0;k<20;k++){const options=optionsFor(subset[0],subset,4);assert.equal(options.length,Math.min(n,4));assert.equal(new Set(options.map(x=>x.id)).size,options.length);assert.ok(options.every(x=>subset.includes(x)));}}});
+test('題庫均衡輪替，避免相鄰重複',()=>{const pool=poolFor('single',week1,catalog),deck=questionDeck(pool,24);for(let i=0;i<24;i+=6)assert.equal(new Set(deck.slice(i,i+6).map(x=>x.id)).size,6);for(let i=1;i<24;i++)assert.notEqual(deck[i].id,deck[i-1].id);});
+test('連點不會多記分或跳題，同題多次錯誤只計一題',()=>{const r=new Round(poolFor('single',week1,catalog).slice(0,2));assert.equal(r.answer('ㄆ').correct,false);r.answer('ㄆ');assert.equal(r.answer('ㄅ').firstCorrect,false);assert.equal(r.answer('ㄅ').ignored,true);assert.equal(r.rows.length,1);assert.equal(r.mistakes,1);r.next();assert.equal(r.answer('ㄆ').correct,true);assert.equal(r.rows.length,2);assert.equal(r.mistakes,1);});
+test('空題庫與重複設定安全處理，未經確認不開放拼音',()=>{assert.deepEqual(questionDeck([],10),[]);assert.equal(week1.spellingApproved,false);assert.deepEqual(normalizeConfig(['ㄅ','ㄅ','???']).symbols,['ㄅ']);});
+test('所有題庫指向存在的素材',()=>{const all={symbols:BASE,compounds:COMPOUNDS};for(const mode of ['single','compound','spelling'])for(const q of poolFor(mode,all,catalog))assert.ok(existsSync(new URL('../'+q.audio,import.meta.url)),q.audio);});

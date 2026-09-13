@@ -1,0 +1,222 @@
+[
+  {
+    "id": "rabbit",
+    "name": "棉花兔",
+    "category": "animal",
+    "color": "#f5aabd",
+    "light": "#fff6ed",
+    "emoji": "🐰",
+    "image": "assets/characters/cozy-v1/rabbit.png",
+    "starter": true,
+    "enabled": true
+  },
+  {
+    "id": "fox",
+    "name": "橘子狐",
+    "category": "animal",
+    "color": "#eea04c",
+    "light": "#fff2d4",
+    "emoji": "🦊",
+    "image": "assets/characters/cozy-v1/fox.png",
+    "starter": true,
+    "enabled": true
+  },
+  {
+    "id": "panda",
+    "name": "竹葉熊貓",
+    "category": "animal",
+    "color": "#677b88",
+    "light": "#f3f5ee",
+    "emoji": "🐼",
+    "image": "assets/characters/cozy-v1/panda.png",
+    "starter": false,
+    "enabled": true
+  },
+  {
+    "id": "cat",
+    "name": "奶糖貓",
+    "category": "animal",
+    "color": "#dcb389",
+    "light": "#fff0da",
+    "emoji": "🐱",
+    "image": "assets/characters/cozy-v1/cat.png",
+    "starter": false,
+    "enabled": true
+  },
+  {
+    "id": "bear",
+    "name": "蜂蜜熊",
+    "category": "animal",
+    "color": "#b88864",
+    "light": "#f7db9a",
+    "emoji": "🐻",
+    "image": "assets/characters/cozy-v1/bear.png",
+    "starter": false,
+    "enabled": true
+  },
+  {
+    "id": "koala",
+    "name": "雲朵無尾熊",
+    "category": "animal",
+    "color": "#91a7b8",
+    "light": "#e9edf1",
+    "emoji": "🐨",
+    "image": "assets/characters/cozy-v1/koala.png",
+    "starter": false,
+    "enabled": true
+  },
+  {
+    "id": "frog",
+    "name": "荷葉蛙",
+    "category": "animal",
+    "color": "#79b488",
+    "light": "#daf0be",
+    "emoji": "🐸",
+    "image": "assets/characters/cozy-v1/frog.png",
+    "starter": false,
+    "enabled": true
+  },
+  {
+    "id": "penguin",
+    "name": "冰糖企鵝",
+    "category": "animal",
+    "color": "#557fa2",
+    "light": "#eef7f6",
+    "emoji": "🐧",
+    "image": "assets/characters/cozy-v1/penguin.png",
+    "starter": false,
+    "enabled": true
+  },
+  {
+    "id": "lion",
+    "name": "太陽獅",
+    "category": "animal",
+    "color": "#c98446",
+    "light": "#f7d185",
+    "emoji": "🦁",
+    "image": "assets/characters/cozy-v1/lion.png",
+    "starter": false,
+    "enabled": true
+  },
+  {
+    "id": "owl",
+    "name": "星夜貓頭鷹",
+    "category": "animal",
+    "color": "#947baf",
+    "light": "#f4e4fc",
+    "emoji": "🦉",
+    "image": "assets/characters/cozy-v1/owl.png",
+    "starter": false,
+    "enabled": true
+  },
+  {
+    "id": "rose",
+    "name": "花瓣精靈",
+    "category": "fairy",
+    "color": "#dc78ac",
+    "light": "#ffe4ec",
+    "emoji": "🌸",
+    "image": "assets/characters/cozy-v1/rose.png",
+    "starter": false,
+    "enabled": true
+  },
+  {
+    "id": "moon",
+    "name": "月光精靈",
+    "category": "fairy",
+    "color": "#a993db",
+    "light": "#ece7ff",
+    "emoji": "🌙",
+    "image": "assets/characters/cozy-v1/moon.png",
+    "starter": false,
+    "enabled": true
+  },
+  {
+    "id": "sea",
+    "name": "海泡精靈",
+    "category": "fairy",
+    "color": "#64adc9",
+    "light": "#d4f4fa",
+    "emoji": "🫧",
+    "image": "assets/characters/cozy-v1/sea.png",
+    "starter": false,
+    "enabled": true
+  },
+  {
+    "id": "forest",
+    "name": "森林精靈",
+    "category": "fairy",
+    "color": "#6da489",
+    "light": "#e4f0c8",
+    "emoji": "🌿",
+    "image": "assets/characters/cozy-v1/forest.png",
+    "starter": false,
+    "enabled": true
+  },
+  {
+    "id": "sun",
+    "name": "晨曦精靈",
+    "category": "fairy",
+    "color": "#eda85b",
+    "light": "#fff1b5",
+    "emoji": "☀️",
+    "image": "assets/characters/cozy-v1/sun.png",
+    "starter": false,
+    "enabled": true
+  },
+  {
+    "id": "snow",
+    "name": "雪晶精靈",
+    "category": "fairy",
+    "color": "#80bad0",
+    "light": "#edfaff",
+    "emoji": "❄️",
+    "image": "assets/characters/cozy-v1/snow.png",
+    "starter": false,
+    "enabled": true
+  },
+  {
+    "id": "rainbow",
+    "name": "彩虹精靈",
+    "category": "fairy",
+    "color": "#b78acb",
+    "light": "#fce9d9",
+    "emoji": "🌈",
+    "image": "assets/characters/cozy-v1/rainbow.png",
+    "starter": false,
+    "enabled": true
+  },
+  {
+    "id": "berry",
+    "name": "莓果精靈",
+    "category": "fairy",
+    "color": "#b774b2",
+    "light": "#f8dfea",
+    "emoji": "🍓",
+    "image": "assets/characters/cozy-v1/berry.png",
+    "starter": false,
+    "enabled": true
+  },
+  {
+    "id": "star",
+    "name": "星河精靈",
+    "category": "fairy",
+    "color": "#7184c7",
+    "light": "#e0e9ff",
+    "emoji": "⭐",
+    "image": "assets/characters/cozy-v1/star.png",
+    "starter": false,
+    "enabled": true
+  },
+  {
+    "id": "lavender",
+    "name": "薰衣草精靈",
+    "category": "fairy",
+    "color": "#a994cc",
+    "light": "#f4e5fc",
+    "emoji": "🪻",
+    "image": "assets/characters/cozy-v1/lavender.png",
+    "starter": false,
+    "enabled": true
+  }
+]

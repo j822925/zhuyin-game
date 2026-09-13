@@ -1,0 +1,1 @@
+{"name":"zhuyin-adventure","private":true,"type":"module","scripts":{"test":"node --test tests/*.test.js","sync:characters":"node tools/sync-characters.mjs","check:characters":"node tools/sync-characters.mjs --check"}}

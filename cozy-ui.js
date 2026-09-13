@@ -1,4 +1,4 @@
-import {CHARACTERS,portrait} from './characters.js?v=20260913-home1';
+import {CHARACTERS,portrait} from './characters.js?v=20260913-listen1';
 export function setupCozyUI(){
  document.body.classList.add('cozy-ui');
  document.querySelector('.top-actions').append(document.getElementById('voice-help'));
@@ -7,8 +7,8 @@ export function setupCozyUI(){
  hero.querySelector('h1').classList.add('sr-only');
  hero.querySelector('.mascot').innerHTML=portrait(character('rabbit'));
  const friend=document.createElement('div');friend.className='cozy-friend';friend.setAttribute('aria-hidden','true');friend.innerHTML=portrait(character('fox'));hero.append(friend);
- for(const [mode,id,symbol] of [['single','rabbit','ㄅ'],['compound','frog','ㄧㄠ'],['spelling','star','ㄅ＋ㄠ']]){
-  const card=document.querySelector(`[data-mode="${mode}"]`);card.setAttribute('aria-label',({single:'聽音辨識',compound:'結合韻',spelling:'拼音練習'})[mode]);
+ for(const [mode,id,symbol] of [['single','rabbit','ㄅ・ㄠ・ㄧㄠ'],['spelling','star','ㄅ＋ㄠ']]){
+  const card=document.querySelector(`[data-mode="${mode}"]`);card.setAttribute('aria-label',({single:'聽音辨識：聲符、韻符與結合韻',spelling:'拼音練習'})[mode]);
   card.querySelector('.world-art').innerHTML=portrait(character(id))+`<i>${symbol}</i>`;
  }
  for(const [id,characterId] of [['pool-animal','fox'],['pool-fairy','moon']])document.getElementById(id).innerHTML=portrait(character(characterId));

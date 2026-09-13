@@ -28,3 +28,5 @@
 - https://webkit.org/blog/13878/web-push-for-web-apps-on-ios-and-ipados/
 
 98355d9 已上傳 GitHub 主分支，啟動正式網站發布；安裝入口為 /zhuyin-game/?v=20260913-home1，教學頁為 /zhuyin-game/install.html。
+
+發布完成：269dac1 的 GitHub Pages run 34734300353 為 success；正式教學頁可開啟，正式首頁 DOM 已確認 Apple standalone=yes、manifest 與兔子 apple-touch-icon 路徑。實體 iPad 的系統安裝流程尚未驗收，交付說明已明示此限制。

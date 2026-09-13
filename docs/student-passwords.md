@@ -6,7 +6,7 @@
 
 [開啟學生密碼分頁](https://docs.google.com/spreadsheets/d/1b8WYLHZdupEotCUKljM43vTEVHrF52TJpnYF7BGaV0o/edit?gid=193889082#gid=193889082)。正式密碼需由老師親自輸入；代理未設定或更改任何正式密碼。
 
-本機前端及後台程式已實作；正式部署前必須完成私人試算表初始化與實機驗收。未部署時，不得宣稱舊正式遊戲已受到密碼保護。
+2026-09-13 已確認 01–15 號皆為老師設定完成，前端及後台已發布（Apps Script 部署版本 5、API v4）。正式登入與存分驗收進度見 `release-20260913.md`；實體 iPad 驗收仍需老師操作。
 
 1. 在原 Apps Script 保留每日總覽程式，更新 `backend/game-api.gs`，另新增 `backend/student-auth.gs`。
 2. 執行 `setupGameSettings`、`setupStudentPasswords`。後者建立「學生密碼」分頁與 `studentPasswordEdit` 編輯觸發器。新增權限授權需由老師確認。
